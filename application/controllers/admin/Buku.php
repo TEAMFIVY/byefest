@@ -12,53 +12,53 @@ class Buku extends CI_Controller {
     public function index()
     {
         $data['title'] = "Manajemen Buku | EduPrime Admin";
-        $data['books'] = $this->buku->get_all(); // ambil semua data buku
         $this->template->load('layout/main', 'admin/buku/buku', $data);
     }
 
-    public function store()
+    // ✅ ambil semua data buku (untuk Ajax loadBooks)
+    public function getBooks()
     {
-        $data = [
-            'judul' => $this->input->post('judul'),
-            'mapel' => $this->input->post('mapel'),
-            'kelas' => $this->input->post('kelas'),
-            'cover' => $this->input->post('cover')
-        ];
-        $this->buku->insert($data);
-        $this->session->set_flashdata('success', 'Buku berhasil ditambahkan.');
-        redirect('buku');
+        $books = $this->buku->get_all();
+        echo json_encode($books);
     }
 
-    public function edit($id)
+    // ✅ ambil 1 buku (untuk Ajax editBook)
+    public function getBook($id)
     {
         $book = $this->buku->find($id);
-        if (!$book) {
-            show_404();
-        }
-
-        $data['title'] = "Edit Buku | EduPrime Admin";
-        $data['book'] = $book;
-        $this->template->load('layout/main', 'admin/buku/edit', $data);
+        echo json_encode($book);
     }
 
-    public function update($id)
-    {
-        $data = [
-            'judul' => $this->input->post('judul'),
-            'mapel' => $this->input->post('mapel'),
-            'kelas' => $this->input->post('kelas'),
-            'cover' => $this->input->post('cover')
-        ];
+    // ✅ insert / update buku (untuk Ajax form submit)
+   public function store()
+{
+    $id = $this->input->post('id');
+    $data = [
+        'judul' => $this->input->post('judul'),
+        'mapel' => $this->input->post('mapel'),
+        'kelas' => $this->input->post('kelas'),
+        'cover' => $this->input->post('cover')
+    ];
 
-        $this->buku->update($id, $data);
-        $this->session->set_flashdata('success', 'Buku berhasil diperbarui.');
-        redirect('buku');
+    if ($id) {
+        $ok = $this->buku->update($id, $data);
+    } else {
+        $ok = $this->buku->insert($data);
     }
 
+    if ($ok) {
+        echo json_encode(['status' => 'success']);
+    } else {
+        http_response_code(500); // bikin Ajax masuk ke error
+        echo json_encode(['status' => 'error']);
+    }
+}
+
+
+    // ✅ hapus buku (untuk Ajax delete)
     public function delete($id)
     {
         $this->buku->delete($id);
-        $this->session->set_flashdata('success', 'Buku berhasil dihapus.');
-        redirect('buku');
+        echo json_encode(['status' => 'success']);
     }
 }

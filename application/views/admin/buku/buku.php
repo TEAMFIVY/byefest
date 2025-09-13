@@ -165,7 +165,7 @@
         window.closeModal = function(modalElementId) {const modal=document.getElementById(modalElementId);modal.classList.remove('visible');modal.classList.add('hidden');if(modalElementId==='bookModal'){bookForm.reset();isEditMode=false;}}
 
         function loadBooks(){
-            $.ajax({url:'<?= site_url("buku/getBooks") ?>', method:'GET', dataType:'json',
+            $.ajax({url:'<?= site_url("admin/buku/getBooks") ?>', method:'GET', dataType:'json',
                 success:function(data){
                     booksTableBody.innerHTML='';
                     data.forEach((book,index)=>{
@@ -199,7 +199,7 @@
             const id=document.getElementById('bookId').value;
             const formData={id:id, judul:$('#judul').val(), mapel:$('#mapel').val(), kelas:$('#kelas').val(), cover:$('#cover').val()};
             $.ajax({
-                url:'<?= site_url("buku/store") ?>',
+                url:'<?= site_url("admin/buku/store") ?>',
                 method:'POST',
                 data:formData,
                 success:function(){closeModal('bookModal');loadBooks();},
@@ -208,7 +208,7 @@
         });
 
         window.editBook=function(id){
-            $.ajax({url:'<?= site_url("buku/getBook") ?>/'+id, method:'GET', dataType:'json',
+            $.ajax({url:'<?= site_url("admin/buku/getBook") ?>/'+id, method:'GET', dataType:'json',
                 success:function(book){
                     modalTitle.textContent='Edit Buku';
                     document.getElementById('bookId').value=book.id;
@@ -225,7 +225,7 @@
         window.showDeleteModal=function(id){bookToDeleteId=id;openModal('deleteModal');};
         confirmDeleteBtn.addEventListener('click',()=>{
             if(bookToDeleteId){
-                $.ajax({url:'<?= site_url("buku/delete") ?>/'+bookToDeleteId, method:'POST',
+                $.ajax({url:'<?= site_url("admin/buku/delete") ?>/'+bookToDeleteId, method:'POST',
                     success:function(){closeModal('deleteModal');loadBooks();},
                     error:function(){alert('Gagal menghapus buku!');}
                 });
