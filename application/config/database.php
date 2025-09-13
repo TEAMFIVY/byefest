@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '192.168.105.87',
 	'username' => 'fivy',
 	'password' => 'password',
 	'database' => 'backend-byefest',
