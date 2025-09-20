@@ -15,4 +15,5 @@ class Buku extends CI_Controller {
         $data['books'] = $this->Buku_model->get_all(); // ambil data dari model
         $this->load->view('member/buku', $data);
     }
+    
 }

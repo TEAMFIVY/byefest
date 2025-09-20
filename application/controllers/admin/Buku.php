@@ -61,4 +61,9 @@ class Buku extends CI_Controller {
         $this->buku->delete($id);
         echo json_encode(['status' => 'success']);
     }
+    
+    public function find($id) {
+    return $this->db->get_where('buku', ['id' => $id])->row();
+}
+
 }

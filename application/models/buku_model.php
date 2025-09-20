@@ -23,5 +23,11 @@ class Buku_model extends CI_Model {
     public function find($id) {
         return $this->db->get_where($this->table, ['id' => $id])->row();
     }
+
+    public function get_by_id($id)
+    {
+        return $this->db->get_where('buku', ['id' => $id])->row();
+    }
+
     
 }

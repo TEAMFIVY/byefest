@@ -57,3 +57,5 @@ $route['admin/buku/store'] = 'admin/buku/store';
 $route['admin/buku/getBooks'] = 'admin/buku/getBooks';
 $route['admin/buku/getBook/(:num)'] = 'admin/buku/getBook/$1';
 $route['admin/buku/delete/(:num)'] = 'admin/buku/delete/$1';
+$route['detail_buku/(:num)'] = 'member/detail_buku/index/$1';
+

@@ -121,8 +121,7 @@
         <div class="book-content">
           <h3><?= $book->judul ?></h3>
           <p><?= $book->mapel ?> -  <?= $book->kelas ?></p>
-          <button onclick="window.location.href='<?= base_url('detail_buku/'.$book->id) ?>'">Lihat Detail</button>
-        </div>
+          <button onclick="window.location.href='<?= site_url('detail_buku/'.$book->id) ?>'">Lihat Detail</button>
       </div>
     <?php endforeach; ?>
   </div>
