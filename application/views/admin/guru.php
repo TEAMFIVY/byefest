@@ -119,277 +119,129 @@
 </head>
 
 <body class="flex relative overflow-x-hidden min-h-screen">
-
-    <div id="sidebar-container" class="md:sticky md:top-0 md:h-screen w-72"></div>
-
+    <div id="sidebar-container"></div>
     <div class="flex-1 flex flex-col min-h-screen">
         <div id="header-container"></div>
         <main class="flex-1 p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8" data-aos="fade-up">👨‍🏫 Manajemen Guru</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">👨‍🏫 Manajemen Guru</h1>
 
-            <div class="flex justify-end mb-6" data-aos="fade-up" data-aos-delay="100">
-                <button id="addGuruBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl shadow-lg transition duration-200">
-                    <i class="bi bi-plus-circle mr-2"></i>Tambah Guru
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                    <?= $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="flex justify-end mb-4">
+                <button onclick="openModal()" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl shadow-lg">
+                    <i class="bi bi-plus-circle mr-2"></i> Tambah Guru
                 </button>
             </div>
 
-            <div class="card p-6 overflow-x-auto" data-aos="fade-up" data-aos-delay="200">
+            <div class="card p-6 overflow-x-auto">
                 <table class="w-full text-left text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 rounded-t-lg">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th scope="col" class="py-3 px-6 rounded-tl-lg">Nama</th>
-                            <th scope="col" class="py-3 px-6">NIP</th>
-                            <th scope="col" class="py-3 px-6">Mata Pelajaran</th>
-                            <th scope="col" class="py-3 px-6 text-center rounded-tr-lg">Aksi</th>
+                            <th class="py-3 px-6">Nama</th>
+                            <th class="py-3 px-6">NIP</th>
+                            <th class="py-3 px-6">Mata Pelajaran</th>
+                            <th class="py-3 px-6 text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="guruTableBody">
-                        </tbody>
+                    <tbody>
+                        <?php foreach ($guru as $g): ?>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3 px-6"><?= $g->nama ?></td>
+                                <td class="py-3 px-6"><?= $g->nip ?></td>
+                                <td class="py-3 px-6"><?= $g->mapel ?></td>
+                                <td class="py-3 px-6 text-center space-x-2">
+                                    <a href="<?= site_url('admin/guru/edit/'.$g->id_guru) ?>" 
+                                    class="text-blue-600 hover:text-blue-800"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="<?= site_url('admin/guru/delete/'.$g->id_guru) ?>" 
+                                    class="text-red-600 hover:text-red-800" 
+                                    onclick="return confirm('Yakin hapus data ini?')"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
                 </table>
             </div>
+
+            <!-- Modal untuk Tambah Guru -->
+            <div id="tambahGuruModal" class="modal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                <div class="modal-content relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
+                    <div class="mt-3">
+                        <div class="flex justify-between items-center pb-3 border-b">
+                            <h3 class="text-xl font-semibold text-gray-800">Tambah Data Guru</h3>
+                            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                                <i class="bi bi-x-circle text-2xl"></i>
+                            </button>
+                        </div>
+                        
+                        <form action="<?= site_url('admin/guru/simpan') ?>" method="POST" class="space-y-4 mt-4">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Guru</label>
+                                <input type="text" id="nama" name="nama" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="nip" class="block text-sm font-medium text-gray-700 mb-1">NIP</label>
+                                <input type="text" id="nip" name="nip" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="mapel" class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
+                                <input type="text" id="mapel" name="mapel" required 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div class="flex justify-end space-x-3 pt-4">
+                                <button type="button" onclick="closeModal()" 
+                                    class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">
+                                    Batal
+                                </button>
+                                <button type="submit" 
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                                    Simpan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Fungsi untuk membuka modal
+                function openModal() {
+                    document.getElementById('tambahGuruModal').classList.remove('hidden');
+                    document.getElementById('tambahGuruModal').classList.add('visible');
+                }
+
+                // Fungsi untuk menutup modal
+                function closeModal() {
+                    document.getElementById('tambahGuruModal').classList.remove('visible');
+                    document.getElementById('tambahGuruModal').classList.add('hidden');
+                }
+
+                // Tutup modal jika klik di luar area modal
+                window.onclick = function(event) {
+                    const modal = document.getElementById('tambahGuruModal');
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                }
+
+                // Tutup modal dengan tombol ESC
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape') {
+                        closeModal();
+                    }
+                });
+            </script>
+
         </main>
     </div>
-
-    <div id="guruModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="modal-content bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800">Tambah Guru</h3>
-                <button onclick="closeModal('guruModal')" class="text-gray-400 hover:text-gray-600 transition duration-200">
-                    <i class="bi bi-x-lg text-2xl"></i>
-                </button>
-            </div>
-            <form id="guruForm">
-                <input type="hidden" id="userId">
-                <input type="hidden" id="guruId">
-                <div class="mb-4">
-                    <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Guru</label>
-                    <input type="text" id="nama" name="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                </div>
-                <div class="mb-4">
-                    <label for="nip" class="block text-sm font-medium text-gray-700 mb-1">NIP</label>
-                    <input type="text" id="nip" name="nip" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                </div>
-                <div class="mb-4">
-                    <label for="mapel" class="block text-sm font-medium text-gray-700 mb-1">Mata Pelajaran</label>
-                    <input type="text" id="mapel" name="mapel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                </div>
-                <div class="flex justify-end space-x-4">
-                    <button type="button" onclick="closeModal('guruModal')" class="px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-200 transition duration-200">Batal</button>
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="deleteModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="modal-content bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm mx-4 text-center">
-            <div class="flex flex-col items-center justify-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-3xl mb-4">
-                    <i class="bi bi-trash-fill"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Hapus Guru</h3>
-                <p class="text-sm text-gray-500">Apakah Anda yakin ingin menghapus data guru ini? Aksi ini tidak dapat dibatalkan.</p>
-            </div>
-            <div class="flex justify-center space-x-4">
-                <button type="button" onclick="closeModal('deleteModal')" class="px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-200 transition duration-200">Batal</button>
-                <button type="button" id="confirmDeleteBtn" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">Hapus</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" onclick="toggleSidebar()"></div>
-
-    <script>
-        async function loadComponent(url, elementId) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const html = await response.text();
-                document.getElementById(elementId).innerHTML = html;
-            } catch (e) {
-                console.error(`Gagal memuat komponen dari ${url}:`, e);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('../layout/sidebar.html', 'sidebar-container');
-            loadComponent('../layout/header.html', 'header-container');
-
-            setTimeout(() => {
-                AOS.init({
-                    duration: 800,
-                    easing: 'ease-out-quad',
-                    once: true,
-                    offset: 50
-                });
-            }, 500);
-        });
-
-        const guruModal = document.getElementById('guruModal');
-        const deleteModal = document.getElementById('deleteModal');
-        const addGuruBtn = document.getElementById('addGuruBtn');
-        const guruForm = document.getElementById('guruForm');
-        const guruTableBody = document.getElementById('guruTableBody');
-        const modalTitle = document.getElementById('modalTitle');
-        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-        let isEditMode = false;
-        let guruToDeleteId = null;
-
-        // Simulasi Database
-        const db = {
-            users: JSON.parse(localStorage.getItem('users')) || [],
-            guru: JSON.parse(localStorage.getItem('guru')) || [],
-            save: function() {
-                localStorage.setItem('users', JSON.stringify(this.users));
-                localStorage.setItem('guru', JSON.stringify(this.guru));
-            }
-        };
-
-        function renderGuru() {
-            guruTableBody.innerHTML = '';
-            const guruWithUser = db.guru.map(g => {
-                const user = db.users.find(u => u.user_id === g.user_id);
-                return { ...g,
-                    nama: user ? user.nama : 'N/A'
-                };
-            });
-
-            guruWithUser.forEach((guru, index) => {
-                const row = document.createElement('tr');
-                row.classList.add('border-b', 'hover:bg-gray-50');
-                row.setAttribute('data-aos', 'fade-up');
-                row.setAttribute('data-aos-delay', (index * 50 + 300).toString());
-                row.innerHTML = `
-                    <td class="py-4 px-6 font-medium text-gray-900">${guru.nama}</td>
-                    <td class="py-4 px-6">${guru.nip}</td>
-                    <td class="py-4 px-6">${guru.mapel}</td>
-                    <td class="py-4 px-6 text-center space-x-2">
-                        <button onclick="editGuru(${guru.guru_id})" class="text-blue-600 hover:text-blue-800 transition duration-200" title="Edit">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button onclick="showDeleteModal(${guru.guru_id})" class="text-red-600 hover:text-red-800 transition duration-200" title="Hapus">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                `;
-                guruTableBody.appendChild(row);
-            });
-        }
-
-        function openModal(modalElementId) {
-            const modal = document.getElementById(modalElementId);
-            modal.classList.remove('hidden');
-            modal.classList.add('visible');
-        }
-
-        window.closeModal = function(modalElementId) {
-            const modal = document.getElementById(modalElementId);
-            modal.classList.remove('visible');
-            modal.classList.add('hidden');
-            if (modalElementId === 'guruModal') {
-                guruForm.reset();
-                isEditMode = false;
-                document.getElementById('nip').disabled = false;
-            }
-        }
-
-        addGuruBtn.addEventListener('click', () => {
-            modalTitle.textContent = 'Tambah Guru';
-            document.getElementById('userId').value = '';
-            document.getElementById('guruId').value = '';
-            document.getElementById('nip').disabled = false;
-            openModal('guruModal');
-        });
-
-        guruForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userId = document.getElementById('userId').value;
-            const guruId = document.getElementById('guruId').value;
-            const nama = document.getElementById('nama').value;
-            const nip = document.getElementById('nip').value;
-            const mapel = document.getElementById('mapel').value;
-
-            if (isEditMode) {
-                const guruIndex = db.guru.findIndex(g => g.guru_id == guruId);
-                const userIndex = db.users.findIndex(u => u.user_id == userId);
-
-                if (guruIndex !== -1 && userIndex !== -1) {
-                    db.guru[guruIndex].mapel = mapel;
-                    db.users[userIndex].nama = nama;
-                }
-            } else {
-                const newUserId = db.users.length > 0 ? Math.max(...db.users.map(u => u.user_id)) + 1 : 1;
-                const newGuruId = db.guru.length > 0 ? Math.max(...db.guru.map(g => g.guru_id)) + 1 : 1;
-
-                const newUser = {
-                    user_id: newUserId,
-                    nama: nama,
-                    email: nip + '@eduprime.id',
-                    password: '',
-                    role: 'member',
-                    created_at: new Date().toISOString()
-                };
-                db.users.push(newUser);
-
-                const newGuru = {
-                    guru_id: newGuruId,
-                    user_id: newUserId,
-                    nip: nip,
-                    mapel: mapel
-                };
-                db.guru.push(newGuru);
-            }
-
-            db.save();
-            renderGuru();
-            closeModal('guruModal');
-        });
-
-        window.editGuru = function(id) {
-            const guru = db.guru.find(g => g.guru_id === id);
-            const user = db.users.find(u => u.user_id === guru.user_id);
-            if (guru && user) {
-                modalTitle.textContent = 'Edit Guru';
-                document.getElementById('guruId').value = guru.guru_id;
-                document.getElementById('userId').value = user.user_id;
-                document.getElementById('nama').value = user.nama;
-                document.getElementById('nip').value = guru.nip;
-                document.getElementById('mapel').value = guru.mapel;
-                document.getElementById('nip').disabled = true;
-                isEditMode = true;
-                openModal('guruModal');
-            }
-        };
-
-        window.showDeleteModal = function(id) {
-            guruToDeleteId = id;
-            openModal('deleteModal');
-        };
-
-        confirmDeleteBtn.addEventListener('click', () => {
-            if (guruToDeleteId) {
-                const guru = db.guru.find(g => g.guru_id === guruToDeleteId);
-                if (guru) {
-                    db.users = db.users.filter(u => u.user_id !== guru.user_id);
-                    db.guru = db.guru.filter(g => g.guru_id !== guruToDeleteId);
-                    db.save();
-                    renderGuru();
-                    closeModal('deleteModal');
-                }
-            }
-        });
-
-        window.toggleSidebar = function() {
-            const sidebar = document.querySelector("#sidebar-container .sidebar");
-            const overlay = document.getElementById("overlay");
-            sidebar.classList.toggle("hidden");
-            overlay.classList.toggle("hidden");
-        }
-
-        document.addEventListener('DOMContentLoaded', renderGuru);
-    </script>
 </body>
-
 </html>
