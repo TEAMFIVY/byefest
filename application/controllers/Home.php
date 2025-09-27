@@ -5,6 +5,6 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Home Admin | ByeFest";
-		$this->template->load('layout/main','admin/home', $data);
+		$this->template->load('layout/mazer','admin/home', $data);
 	}
 }
