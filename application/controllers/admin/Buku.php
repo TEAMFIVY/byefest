@@ -6,14 +6,14 @@ class Buku extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Buku_model', 'buku'); // panggil model
+        $this->load->model('Buku_model', 'buku'); 
     }
 
     public function index()
     {
-        $data['title'] = "Manajemen Buku | EduPrime Admin";
-        $data['books'] = $this->buku->get_all(); // ambil semua data buku
-        $this->template->load('layout/main', 'admin/buku/buku', $data);
+        $data['title'] = "Manajemen Buku | Byefest Admin";
+        $data['books'] = $this->buku->get_all(); 
+        $this->template->load('layout/mazer', 'admin/buku/buku', $data);
     }
 
     public function store()
@@ -36,9 +36,9 @@ class Buku extends CI_Controller {
             show_404();
         }
 
-        $data['title'] = "Edit Buku | EduPrime Admin";
+        $data['title'] = "Edit Buku | Byefest Admin";
         $data['book'] = $book;
-        $this->template->load('layout/main', 'admin/buku/edit', $data);
+        $this->template->load('layout/mazer', 'admin/buku/edit', $data);
     }
 
     public function update($id)
