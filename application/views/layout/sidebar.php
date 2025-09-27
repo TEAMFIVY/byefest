@@ -38,7 +38,6 @@
             </div>
             <span>Try Out</span>
         </a>
-
         <a href="<?php echo site_url('admin/buku/index'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
             <div class="bg-white/10 p-3 rounded-xl mr-4">
                 <i class="bi bi-book text-lg"></i>
