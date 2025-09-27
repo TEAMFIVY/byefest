@@ -72,7 +72,7 @@
 
     <!-- Latihan Soal -->
     <li class="sidebar-item <?= $this->uri->segment(2) == 'latihan_soal' ? 'active' : '' ?>">
-        <a href="<?= base_url('admin/latihan_soal') ?>" class="sidebar-link">
+        <a href="<?= base_url('admin/latihan') ?>" class="sidebar-link">
             <i class="bi bi-journal-text"></i>
             <span>Latihan Soal</span>
         </a>
