@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 	public function index()
 	{
-		$data['title'] 	= "Data User | ByeFest";
-		$data['users']	= $this->db->get('user')->result();
-		$this->template->load('layout/main','admin/user', $data);
+		$data['title'] 	= "Daftar User | ByeFest";
+		$data['users'] = $this->db->where_in('level', ['admin','user'])->get('user')->result();
+		$this->template->load('layout/mazer','admin/user', $data);
 	}
 
 	public function simpan()
@@ -37,7 +37,15 @@ class User extends CI_Controller {
 		redirect('admin/user');
 	}
 
-	public function edit($id){
-		
+	public function update(){
+		$id_user = $this->input->post('id_user');
+		$data =[
+			'nama'	=> $this->input->post('nama'),
+			'level'	=> $this->input->post('level'),
+		];	
+		$this->db->where('id_user', $id_user);
+		$this->db->update('user', $data);
+		$this->session->set_flashdata('success', 'Data berhsail di Update');
+		redirect('admin/user');
 	}
 }

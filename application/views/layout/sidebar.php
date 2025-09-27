@@ -36,7 +36,7 @@
             <div class="bg-white/10 p-3 rounded-xl mr-4">
                 <i class="bi bi-person-badge text-lg"></i>
             </div>
-            <span>Data Guru</span>
+            <span>Daftar Guru</span>
         </a>
 
         <a href="<?php echo site_url('tryout'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
