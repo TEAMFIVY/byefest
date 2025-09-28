@@ -108,38 +108,36 @@ class Bab extends CI_Controller {
     // }
 
     public function store()
-{
-    $id_bab = $this->input->post('id_bab');
-    $data = [
-        'id_buku'   => $this->input->post('id_buku'),
-        'judul_bab' => $this->input->post('judul_bab'),
-        'urutan'    => $this->input->post('urutan'),
-        'isi'       => $this->input->post('isi')
-    ];
+    {
+        $data = [
+            'id_buku'   => $this->input->post('id_buku'),
+            'judul_bab' => $this->input->post('judul_bab'),
+            'urutan'    => $this->input->post('urutan'),
+            'isi'       => $this->input->post('isi'),
+        ];
 
-    // Debug: lihat data yang diterima
-    log_message('debug', 'Data Bab diterima: '.print_r($data,true));
+        $this->bab->insert($data);
 
-    if ($id_bab) {
-        $ok = $this->bab->update($id_bab, $data);
-    } else {
-        $ok = $this->bab->insert($data);
+        $this->session->set_flashdata('success', 'Bab berhasil ditambahkan.');
+        return redirect('admin/buku'); // arahkan balik ke daftar buku
     }
 
-    if ($ok) {
-        echo json_encode(['status' => 'success']);
-    } else {
-        // Ambil error dari database
-        $db_error = $this->db->error();
-        log_message('error', 'Insert/Update Bab gagal: '.print_r($db_error,true));
-        http_response_code(500);
-        echo json_encode([
-            'status' => 'error',
-            'message' => $db_error
-        ]);
-    }
-}
+    // ✅ update bab
+    public function update()
+    {
+        $id_bab = $this->input->post('id_bab');
 
+        $data = [
+            'judul_bab' => $this->input->post('judul_bab'),
+            'urutan'    => $this->input->post('urutan'),
+            'isi'       => $this->input->post('isi')
+        ];
+
+        $this->bab->update($id_bab, $data);
+
+        $this->session->set_flashdata('success', 'Bab berhasil diperbarui.');
+        redirect('admin/buku'); // balik ke daftar buku
+    }
 
     // ✅ hapus bab
     public function delete($id_bab)

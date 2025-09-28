@@ -28,14 +28,14 @@ class Bab_model extends CI_Model {
     }
 
     public function insert($data) {
-    $this->db->insert($this->table, $data);
-    if($this->db->affected_rows() > 0){
-        return true;
-    } else {
-        log_message('error', 'Insert Bab gagal: '.json_encode($data));
-        return false;
+        $this->db->insert($this->table, $data);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            log_message('error', 'Insert Bab gagal: ' . json_encode($data));
+            return false;
+        }
     }
-}
 
     // Update bab
     public function update($id_bab, $data) {
