@@ -77,7 +77,6 @@
 								</li>
 							</ul>
 						</li>
-
 						<!-- Latihan Soal -->
 						<li class="sidebar-item <?= $this->uri->segment(2) == 'latihan_soal' ? 'active' : '' ?>">
 							<a href="<?= base_url('admin/latihan_soal') ?>" class="sidebar-link">
@@ -85,6 +84,13 @@
 								<span>Latihan Soal</span>
 							</a>
 						</li>
+    <!-- Latihan Soal -->
+    <li class="sidebar-item <?= $this->uri->segment(2) == 'latihan_soal' ? 'active' : '' ?>">
+        <a href="<?= base_url('admin/latihan') ?>" class="sidebar-link">
+            <i class="bi bi-journal-text"></i>
+            <span>Latihan Soal</span>
+        </a>
+    </li>
 
 						<!-- Try Out -->
 						<li class="sidebar-item <?= $this->uri->segment(2) == 'tryout' ? 'active' : '' ?>">
