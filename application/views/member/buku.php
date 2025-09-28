@@ -110,22 +110,24 @@
       </div>
     </section>
     <!-- Bagian HTML -->
-    <section class="book-section">
+<section class="book-section">
   <h2 class="section-title">Daftar Buku</h2>
   <div class="book-grid">
     <?php foreach($books as $book): ?>
       <div class="book-card">
         <div class="book-image">
-          <img src="<?= $book->cover ?>" alt="<?= $book->judul ?>">
+          <img src="<?= base_url('assets/uploads/buku/'.$book->cover) ?>" alt="<?= $book->judul ?>">
         </div>
         <div class="book-content">
           <h3><?= $book->judul ?></h3>
-          <p><?= $book->mapel ?> -  <?= $book->kelas ?></p>
+          <p><?= $book->mapel ?> - <?= $book->kelas ?></p>
           <button onclick="window.location.href='<?= site_url('detail_buku/'.$book->id) ?>'">Lihat Detail</button>
-      </div>
+        </div>
+      </div> <!-- tutup book-card -->
     <?php endforeach; ?>
   </div>
 </section>
+
 
     <section class="book-section">
       <h2 class="section-title">Matematika</h2>

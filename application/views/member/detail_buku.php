@@ -22,7 +22,7 @@
   <section class="hero">
   <div class="hero-container">
     <div class="hero-image">
-      <img src="<?= $book->cover ?>" alt="<?= $book->judul ?>" class="cover-img">
+      <img src="<?= base_url('assets/uploads/buku/'.$book->cover) ?>" alt="<?= $book->judul ?>" class="cover-img">
     </div>
     <div class="hero-text">
       <h1><?= $book->judul ?></h1>
