@@ -1,9 +1,9 @@
 <div class="col-12">
 	<div class="card">
 		<div class="card-header d-flex justify-content-between align-items-center">
-			<h4 class="card-title"><i class="bi bi-people-fill me-2"></i> Daftar Guru | Byefest</h4>
-			<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addGuruModal">
-				<i class="bi bi-plus-circle me-1"></i> Tambah Guru
+			<h4 class="card-title"><i class="bi bi-people-fill me-2"></i> Daftar User | ByeFest</h4>
+			<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+				<i class="bi bi-plus-circle me-1"></i> Tambah User
 			</button>
 		</div>
 		<div class="card-body">
@@ -27,54 +27,61 @@
 				<table class="table table-striped mb-0">
 					<thead>
 						<tr>
-							<th>ID Guru</th>
-							<th>Nama Guru</th>
-							<th>NIP</th>
-							<th>Mata Pelajaran</th>
+							<th>Nama</th>
+							<th>Email</th>
+							<th>Level</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($guru as $g): ?>
+						<?php foreach ($users as $u): ?>
 						<tr>
-							<td><?= $g->id_guru ?></td>
-							<td><?= $g->nama ?></td>
-							<td><?= $g->nip ?></td>
-							<td><?= $g->mapel ?></td>
+							<td><?= $u->nama ?></td>
+							<td><?= $u->email ?></td>
+							<td><?= $u->level ?></td>
 							<td class="text-center">
 								<!-- Tombol Edit -->
 								<button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-									data-bs-target="#editGuruModal<?= $g->id_guru ?>">
+									data-bs-target="#editUserModal<?= $u->id_user ?>">
 									<i class="bi bi-pencil-square"></i>
 								</button>
 								<!-- Tombol Delete -->
 								<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-									data-bs-target="#deleteGuruModal<?= $g->id_guru ?>">
+									data-bs-target="#deleteUserModal<?= $u->id_user ?>">
 									<i class="bi bi-trash"></i>
 								</button>
 							</td>
 						</tr>
 
 						<!-- Modal Edit -->
-						<div class="modal fade" id="editGuruModal<?= $g->id_guru ?>" tabindex="-1" aria-hidden="true">
+						<div class="modal fade" id="editUserModal<?= $u->id_user ?>" tabindex="-1" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered modal-lg">
 								<div class="modal-content">
-									<form action="<?= site_url('admin/guru/update') ?>" method="post">
+									<form action="<?= site_url('admin/user/update') ?>" method="post">
 										<div class="modal-header">
-											<h5 class="modal-title">Edit Guru</h5>
+											<h5 class="modal-title">Edit User</h5>
 											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 										</div>
 										<div class="modal-body">
-											<input type="hidden" name="id_guru" value="<?= $g->id_guru ?>">
+											<input type="hidden" name="id_user" value="<?= $u->id_user ?>">
 											<div class="mb-3">
-												<label class="form-label">NIP</label>
-												<input type="text" class="form-control" name="nip"
-													value="<?= $g->nip ?>" required>
+												<label class="form-label">Nama</label>
+												<input type="text" class="form-control" name="nama"
+													value="<?= $u->nama ?>" required>
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Mata Pelajaran</label>
-												<input type="text" class="form-control" name="mapel"
-													value="<?= $g->mapel ?>" required>
+												<label class="form-label">Email</label>
+												<input type="email" class="form-control" name="email"
+													value="<?= $u->email ?>" required readonly>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Level</label>
+												<select class="form-control" name="level" required>
+													<option value="admin" <?= $u->level == 'admin' ? 'selected' : '' ?>>
+														Admin</option>
+													<option value="user" <?= $u->level == 'user' ? 'selected' : '' ?>>
+														User</option>
+												</select>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -88,19 +95,18 @@
 						</div>
 
 						<!-- Modal Delete -->
-						<div class="modal fade" id="deleteGuruModal<?= $g->id_guru ?>" tabindex="-1" aria-hidden="true">
+						<div class="modal fade" id="deleteUserModal<?= $u->id_user ?>" tabindex="-1" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content">
-									<form action="<?= site_url('admin/guru/hapus') ?>" method="post">
+									<form action="<?= site_url('admin/user/hapus') ?>" method="post">
 										<div class="modal-header">
-											<h5 class="modal-title">Hapus Guru</h5>
+											<h5 class="modal-title">Hapus User</h5>
 											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 										</div>
 										<div class="modal-body text-center">
-											<input type="hidden" name="id_guru" value="<?= $g->id_guru ?>">
+											<input type="hidden" name="id_user" value="<?= $u->id_user ?>">
 											<i class="bi bi-trash-fill text-danger fs-1 mb-3"></i>
-											<p>Apakah Anda yakin ingin menghapus guru dengan NIP
-												<strong><?= $g->nip ?></strong>?</p>
+											<p>Apakah Anda yakin ingin menghapus <strong><?= $u->nama ?></strong>?</p>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-light-secondary"
@@ -121,12 +127,12 @@
 </div>
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="addGuruModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
 		<div class="modal-content">
-			<form action="<?= site_url('admin/guru/simpan') ?>" method="post">
+			<form action="<?= site_url('admin/user/simpan') ?>" method="post">
 				<div class="modal-header">
-					<h5 class="modal-title">Tambah Guru</h5>
+					<h5 class="modal-title">Tambah User</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<div class="modal-body">
@@ -135,22 +141,20 @@
 						<input type="text" class="form-control" name="nama" required>
 					</div>
 					<div class="mb-3">
-						<label class="form-label">NIP</label>
-						<input type="text" class="form-control" name="nip" required>
-					</div>
-					<div class="mb-3">
 						<label class="form-label">Email</label>
-						<input type="text" class="form-control" name="email" required>
+						<input type="email" class="form-control" name="email" required>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Password</label>
 						<input type="password" class="form-control" name="password" required>
 					</div>
 					<div class="mb-3">
-						<label class="form-label">Mata Pelajaran</label>
-						<input type="text" class="form-control" name="mapel" required>
+						<label class="form-label">Level</label>
+						<select class="form-control" name="level" required>
+							<option value="admin">Admin</option>
+							<option value="user">User</option>
+						</select>
 					</div>
-					<!-- id_user bisa dipilih kalau guru dihubungkan dengan user -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Batal</button>

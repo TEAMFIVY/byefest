@@ -2,10 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Template{
-    protected $CI;
-    public function __construct() {
-        $this->CI =& get_instance();
-    }
     var $template_data = array();
     function set($name, $value){
         $this->template_data[$name] = $value;

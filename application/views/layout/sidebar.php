@@ -18,18 +18,25 @@
             <div class="ml-auto w-2 h-2 bg-white rounded-full"></div>
         </a>
 
-        <a href="<?php echo site_url('student'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
+        <a href="<?php echo site_url('admin/user'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
             <div class="bg-white/10 p-3 rounded-xl mr-4">
                 <i class="bi bi-people-fill text-lg"></i>
             </div>
-            <span>Data Siswa</span>
+            <span>Data User</span>
+        </a>
+
+        <a href="<?php echo site_url('admin/member'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
+            <div class="bg-white/10 p-3 rounded-xl mr-4">
+                <i class="bi bi-people-fill text-lg"></i>
+            </div>
+            <span>Data Member</span>
         </a>
 
         <a href="<?php echo base_url('admin/guru'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
             <div class="bg-white/10 p-3 rounded-xl mr-4">
                 <i class="bi bi-person-badge text-lg"></i>
             </div>
-            <span>Data Guru</span>
+            <span>Daftar Guru</span>
         </a>
 
         <a href="<?php echo site_url('tryout'); ?>" class="nav-item flex items-center p-4 rounded-xl font-medium">
