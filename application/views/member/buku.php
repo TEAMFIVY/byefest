@@ -110,9 +110,9 @@
       </div>
     </section>
     <!-- Bagian HTML -->
-<section class="book-section">
+  <section class="book-section">
   <h2 class="section-title">Daftar Buku</h2>
-  <div class="book-grid">
+  <div class="book-grid" style="display:grid; grid-template-columns:repeat(6,1fr); gap:20px;">
     <?php foreach($books as $book): ?>
       <div class="book-card">
         <div class="book-image">
@@ -123,10 +123,13 @@
           <p><?= $book->mapel ?> - <?= $book->kelas ?></p>
           <button onclick="window.location.href='<?= site_url('detail_buku/'.$book->id) ?>'">Lihat Detail</button>
         </div>
-      </div> <!-- tutup book-card -->
+      </div>
     <?php endforeach; ?>
   </div>
 </section>
+
+
+
 
 
     <section class="book-section">

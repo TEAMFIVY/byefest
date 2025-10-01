@@ -20,16 +20,16 @@
   </header>
 
   <section class="hero">
-  <div class="hero-container">
-    <div class="hero-image">
-      <img src="<?= base_url('assets/uploads/buku/'.$book->cover) ?>" alt="<?= $book->judul ?>" class="cover-img">
+    <div class="hero-container">
+      <div class="hero-image">
+        <img src="<?= base_url('assets/uploads/buku/'.$book->cover) ?>" alt="<?= $book->judul ?>" class="cover-img">
+      </div>
+      <div class="hero-text">
+        <h1><?= $book->judul ?></h1>
+        <p><?= $book->mapel ?> - <?= $book->kelas ?></p>
+      </div>
     </div>
-    <div class="hero-text">
-      <h1><?= $book->judul ?></h1>
-      <p><?= $book->mapel ?> - <?= $book->kelas ?></p>
-    </div>
-  </div>
-</section>
+  </section>
 
 
   <section class="book-section">

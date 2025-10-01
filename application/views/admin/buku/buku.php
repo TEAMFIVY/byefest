@@ -188,9 +188,9 @@
 		<!-- Modal Kelola Bab -->
 		<?php foreach ($books as $b): ?>
 		<!-- Tombol untuk buka modal -->
-		<button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addBabModal<?= $b->id ?>">
+		<!-- <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addBabModal<?= $b->id ?>">
 			<i class="bi bi-book"></i>
-		</button>
+		</button> -->
 
 		<!-- Modal untuk buku ini -->
 		<div class="modal fade" id="addBabModal<?= $b->id ?>" tabindex="-1" aria-hidden="true">
