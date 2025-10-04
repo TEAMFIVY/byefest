@@ -41,7 +41,7 @@
 
 						<!-- Dashboard -->
 						<li class="sidebar-item <?= $this->uri->segment(1) == 'home' ? 'active' : '' ?>">
-							<a href="<?= base_url('home') ?>" class="sidebar-link">
+							<a href="<?= base_url('admin/home') ?>" class="sidebar-link">
 								<i class="bi bi-speedometer2"></i>
 								<span>Dashboard</span>
 							</a>
@@ -79,19 +79,11 @@
 						</li>
 						<!-- Latihan Soal -->
 						<li class="sidebar-item <?= $this->uri->segment(2) == 'latihan_soal' ? 'active' : '' ?>">
-							<a href="<?= base_url('admin/latihan_soal') ?>" class="sidebar-link">
+							<a href="<?= base_url('admin/latihan') ?>" class="sidebar-link">
 								<i class="bi bi-journal-text"></i>
 								<span>Latihan Soal</span>
 							</a>
 						</li>
-    <!-- Latihan Soal -->
-    <li class="sidebar-item <?= $this->uri->segment(2) == 'latihan_soal' ? 'active' : '' ?>">
-        <a href="<?= base_url('admin/latihan') ?>" class="sidebar-link">
-            <i class="bi bi-journal-text"></i>
-            <span>Latihan Soal</span>
-        </a>
-    </li>
-
 						<!-- Try Out -->
 						<li class="sidebar-item <?= $this->uri->segment(2) == 'tryout' ? 'active' : '' ?>">
 							<a href="<?= base_url('admin/tryout') ?>" class="sidebar-link">

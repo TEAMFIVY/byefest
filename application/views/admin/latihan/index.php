@@ -57,6 +57,10 @@
                             <input type="text" name="mapel" value="<?= $l->mapel ?>" class="form-control" required>
                           </div>
                           <div class="mb-3">
+                            <label>Bab</label>
+                            <input type="text" name="bab" value="<?= $l->bab ?>" class="form-control" required>
+                          </div>
+                          <div class="mb-3">
                             <label>Tingkat Kelas</label>
                             <input type="text" name="tingkat_kelas" value="<?= $l->tingkat_kelas ?>" class="form-control" required>
                           </div>
@@ -92,6 +96,10 @@
           <div class="mb-3">
             <label>Mapel</label>
             <input type="text" name="mapel" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Bab</label>
+            <input type="text" name="bab" class="form-control" required>
           </div>
           <div class="mb-3">
             <label>Tingkat Kelas</label>

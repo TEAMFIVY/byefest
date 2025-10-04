@@ -51,10 +51,12 @@
 		<!-- Daftar Soal yang sudah ada -->
 		<hr>
 		<h5>Daftar Soal</h5>
+
+		<?php if (!empty($soal)): ?>
 		<?php foreach($soal as $s): ?>
 		<div class="mb-4 p-3 border rounded shadow-sm">
 			<div class="d-flex justify-content-between align-items-center">
-				<strong><?= $s->pertanyaan ?></strong>
+				<strong><?= htmlspecialchars($s->pertanyaan) ?></strong>
 				<div>
 					<button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
 						data-bs-target="#editSoal<?= $s->id_soal ?>">
@@ -68,22 +70,30 @@
 			</div>
 			<ul class="mt-2">
 				<?php 
-        $opsi = $this->db->get_where('opsi_soal',['id_soal'=>$s->id_soal])->result();
-        foreach($opsi as $o): ?>
-				<li <?= $o->jawaban_benar ? 'class="fw-bold text-success"' : '' ?>>
-					<?= $o->teks_opsi ?> <?= $o->jawaban_benar ? '(Benar)' : '' ?>
+                $opsi = $this->db->get_where('opsi_soal',['id_soal'=>$s->id_soal])->result();
+                if (!empty($opsi)): 
+                    foreach($opsi as $o): ?>
+				<li <?= ($o->jawaban_benar ? 'class="fw-bold text-success"' : '') ?>>
+					<?= htmlspecialchars($o->teks_opsi) ?> <?= ($o->jawaban_benar ? '(Benar)' : '') ?>
 				</li>
-				<?php endforeach; ?>
+				<?php endforeach; 
+                else: ?>
+				<li><em>Tidak ada opsi jawaban</em></li>
+				<?php endif; ?>
 			</ul>
 		</div>
 		<?php endforeach; ?>
+		<?php else: ?>
+		<p><em>Belum ada soal untuk latihan ini.</em></p>
+		<?php endif; ?>
+
 	</div>
 </div>
-<div class="modal fade" id="editSoal<?= $s->id_soal ?>" tabindex="-1">
+<div class="modal fade" id="editSoal<?= isset($s->id_soal) ? $s->id_soal : '' ?>" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<form method="post" action="<?= site_url('admin/latihan/update_soal') ?>">
-			<input type="hidden" name="id_soal" value="<?= $s->id_soal ?>">
-			<input type="hidden" name="id_latihan" value="<?= $latihan->id_latihan ?>">
+			<input type="hidden" name="id_soal" value="<?= isset($s->id_soal) ? $s->id_soal : '' ?>">
+			<input type="hidden" name="id_latihan" value="<?= isset($latihan->id_latihan) ? $latihan->id_latihan : '' ?>">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Edit Soal</h5>
@@ -92,20 +102,24 @@
 				<div class="modal-body">
 					<div class="mb-3">
 						<label>Pertanyaan</label>
-						<textarea name="pertanyaan" class="form-control" required><?= $s->pertanyaan ?></textarea>
+						<textarea name="pertanyaan" class="form-control" required><?= isset($s->pertanyaan) ? htmlspecialchars($s->pertanyaan) : '' ?></textarea>
 					</div>
 					<div class="mb-3">
 						<label>Opsi Jawaban</label>
-						<?php foreach($opsi as $i => $o): ?>
-						<div class="input-group mb-2">
-							<span class="input-group-text"><?= chr(65+$i) ?>.</span>
-							<input type="text" name="opsi[]" class="form-control" value="<?= $o->teks_opsi ?>" required>
-							<div class="input-group-text">
-								<input type="radio" name="jawaban_benar" value="<?= $i ?>"
-									<?= $o->jawaban_benar ? 'checked' : '' ?>> Benar
+						<?php if (!empty($opsi)): ?>
+							<?php foreach($opsi as $i => $o): ?>
+							<div class="input-group mb-2">
+								<span class="input-group-text"><?= chr(65+$i) ?>.</span>
+								<input type="text" name="opsi[]" class="form-control" value="<?= htmlspecialchars($o->teks_opsi) ?>" required>
+								<div class="input-group-text">
+									<input type="radio" name="jawaban_benar" value="<?= $i ?>"
+										<?= isset($o->jawaban_benar) && $o->jawaban_benar ? 'checked' : '' ?>> Benar
+								</div>
 							</div>
-						</div>
-						<?php endforeach; ?>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<p><em>Tidak ada opsi jawaban.</em></p>
+						<?php endif; ?>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -116,6 +130,7 @@
 		</form>
 	</div>
 </div>
+
 <script>
 	document.getElementById('buatFormSoal').addEventListener('click', function (e) {
 		e.preventDefault();
