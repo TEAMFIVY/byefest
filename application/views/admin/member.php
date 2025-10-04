@@ -29,7 +29,7 @@
 						<tr>
 							<th>Nama</th>
 							<th>Email</th>
-							<th>Level</th>
+							<th>Paket</th>
 							<th class="text-center">Aksi</th>
 						</tr>
 					</thead>
@@ -38,7 +38,7 @@
 						<tr>
 							<td><?= $m->nama ?></td>
 							<td><?= $m->email ?></td>
-							<td><?= $m->level ?></td>
+							<td><?= $m->paket ?></td>
 							<td class="text-center">
 								<!-- Tombol Edit -->
 								<button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
@@ -74,27 +74,17 @@
 												<input type="email" class="form-control" name="email"
 													value="<?= $m->email ?>" required readonly>
 											</div>
-											<div class="mb-3">
-												<label class="form-label">Level</label>
-												<select class="form-control" name="level" required>
-													<option value="member"
-														<?= $m->level == 'member' ? 'selected' : '' ?>>
-														Member</option>
-													<option value="admin" <?= $m->level == 'admin' ? 'selected' : '' ?>>
-														Admin</option>
-												</select>
-											</div>
-											<div class="mb-3">
+											<!-- <div class="mb-3">
 												<label class="form-label">Paket</label>
 												<select class="form-control" name="paket" required>
-													<option value="basic" <?= $m->paket == 'basic' ? 'selected' : '' ?>>
+													<option value="minggunan" <?= $m->paket == 'mingguan' ? 'selected' : '' ?>>
 														Basic</option>
-													<option value="premium"
-														<?= $m->paket == 'premium' ? 'selected' : '' ?>>Premium</option>
-													<option value="vip" <?= $m->paket == 'vip' ? 'selected' : '' ?>>VIP
+													<option value="bulanan"
+														<?= $m->paket == 'bulanan' ? 'selected' : '' ?>>Premium</option>
+													<option value="tahunan" <?= $m->paket == 'tahunan' ? 'selected' : '' ?>>VIP
 													</option>
 												</select>
-											</div>
+											</div> -->
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-light-secondary"
@@ -161,30 +151,13 @@
 						<input type="password" class="form-control" name="password" required>
 					</div>
 					<div class="mb-3">
-						<label class="form-label">Level</label>
-						<select class="form-control" name="level" required>
-							<option value="member">Member</option>
-						</select>
-					</div>
-					<div class="mb-3">
 						<label class="form-label">Paket</label>
 						<select class="form-control" name="paket" required>
-							<option value="basic" <?= $m->paket == 'basic' ? 'selected' : '' ?>>Basic</option>
-							<option value="premium" <?= $m->paket == 'premium' ? 'selected' : '' ?>>Premium</option>
-							<option value="vip" <?= $m->paket == 'vip' ? 'selected' : '' ?>>VIP</option>
+							<option value="mingguan">Mingguan</option>
+							<option value="bulanan">Bulanan</option>
+							<option value="tahunan">Tahunan</option>
 						</select>
 					</div>
-					<div class="mb-3">
-						<label class="form-label">Tanggal Mulai</label>
-						<input type="date" class="form-control" name="tanggal_mulai" value="<?= date('Y-m-d') ?>"
-							required>
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Tanggal Berakhir</label>
-						<input type="date" class="form-control" name="tanggal_berakhir"
-							value="<?= date('Y-m-d', strtotime('+1 month')) ?>" required>
-					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Batal</button>

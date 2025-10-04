@@ -21,13 +21,28 @@ class Member extends CI_Controller {
 	public function simpan()
 	{
 		$this->db->trans_start();
+		$paket = $this->input->post('paket', TRUE);
+
+		switch ($paket) {
+			case 'mingguan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+7 days'));
+				break;
+			case 'bulanan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 month'));
+				break;
+			case 'tahunan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 year'));
+				break;
+			default:
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 month')); // default
+		}
 
 		// Insert ke tabel user
 		$data_user = [
 			'nama'     => $this->input->post('nama'),
 			'email'    => $this->input->post('email'),
 			'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-			'level'    => $this->input->post('level'),
+			'level'    => 'Member',
 		];
 		$this->db->insert('user', $data_user);
 		$id_user = $this->db->insert_id();
@@ -37,7 +52,7 @@ class Member extends CI_Controller {
 			'id_user'         => $id_user,
 			'paket'           => $this->input->post('paket', TRUE),
 			'tanggal_mulai'   => date('Y-m-d'), // default hari ini
-			'tanggal_berakhir'=> date('Y-m-d', strtotime('+1 month')), // default 1 bulan
+			'tanggal_berakhir'=> $tanggal_berakhir,
 			'status'          => 'aktif'
 		];
 		
@@ -68,32 +83,38 @@ class Member extends CI_Controller {
 	public function update()
 	{
 		$id_user = $this->input->post('id_user');
+		$paket   = $this->input->post('paket', TRUE);
+
+		// Hitung tanggal berakhir sesuai paket
+		switch ($paket) {
+			case 'mingguan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+7 days'));
+				break;
+			case 'bulanan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 month'));
+				break;
+			case 'tahunan':
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 year'));
+				break;
+			default:
+				$tanggal_berakhir = date('Y-m-d', strtotime('+1 month'));
+		}
 
 		// Update tabel user
 		$data_user = [
-			'nama'	=> $this->input->post('nama'),
-			'level'	=> $this->input->post('level'),
-
+			'nama'  => $this->input->post('nama'),
+			'level' => $this->input->post('level'),
 		];	
 		$this->db->where('id_user', $id_user)->update('user', $data_user);
 
+		// Update tabel member (1x saja)
 		$data_member = [
-			'paket' => $this->input->post('paket', TRUE)
+			'paket'            => $paket,
+			'tanggal_mulai'    => date('Y-m-d'),
+			'tanggal_berakhir' => $tanggal_berakhir,
+			'status'           => 'aktif',
 		];
-		$this->db->where('id_user', $this->input->post('id_user'));
-		$this->db->update('member', $data_member);
-		
-
-		// Update tabel member
-		if ($this->input->post('paket')) {
-			$data_member = [
-				'paket'            => $this->input->post('paket'),
-				'tanggal_mulai'    => $this->input->post('tanggal_mulai'),
-				'tanggal_berakhir' => $this->input->post('tanggal_berakhir'),
-				'status'           => $this->input->post('status'),
-			];
-			$this->db->where('id_user', $id_user)->update('member', $data_member);
-		}
+		$this->db->where('id_user', $id_user)->update('member', $data_member);
 
 		$this->session->set_flashdata('success', 'Data berhasil diupdate!');
 		redirect('admin/member');
