@@ -17,6 +17,7 @@
 			scroll-behavior: smooth;
 		}
 
+
 		body {
 			font-family: 'Poppins', sans-serif;
 			background-color: #f9fbfd;
@@ -41,20 +42,14 @@
 		.header-container {
 			max-width: 1200px;
 			margin: auto;
-			display: flex;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: 1fr auto 1fr;
 			align-items: center;
-			flex-wrap: wrap;
-			gap: 20px;
 		}
 
 		header.scrolled {
 			background-color: rgba(18, 46, 73, 0.404);
-		}
-
-		#locknav {
-			color: rgba(255, 255, 255, 0.475);
-			cursor: default;
+			/* agak transparan saat scroll */
 		}
 
 		.profile-dropdown {
@@ -65,13 +60,12 @@
 		.profile-capsule {
 			display: flex;
 			align-items: center;
-			gap: 15px;
+			gap: 10px;
 			padding: 8px 16px;
 			background: white;
 			border-radius: 999px;
 			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 			cursor: pointer;
-			text-decoration: none;
 			transition: background 0.3s ease, box-shadow 0.3s ease;
 		}
 
@@ -88,13 +82,12 @@
 			border: 2px solid #3b5a91;
 		}
 
-		.login-button {
+		.profile-name {
 			font-weight: 600;
 			font-size: 14px;
 			color: #2c3e50;
 			white-space: nowrap;
 		}
-
 
 		.dropdown-icon {
 			font-size: 18px;
@@ -149,24 +142,124 @@
 		}
 
 
-		.logo {
-			font-size: 28px;
-			font-weight: 700;
-			color: #ffffff;
-			text-decoration: none;
+		.verified-dropdown {
+			position: relative;
+			display: inline-block;
+		}
 
+		.verified-icon {
+			width: 40px;
+			height: 40px;
+			cursor: pointer;
+		}
+
+		.verified-shape {
+			width: 100%;
+			height: 100%;
+			background: white;
+			clip-path: polygon(50% 0%, 85% 15%, 100% 50%, 85% 85%,
+					50% 100%, 15% 85%, 0% 50%, 15% 15%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			transition: box-shadow 0.3s ease;
+		}
+
+		.verified-shape:hover {
+			box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+		}
+
+		.check-icon {
+			display: block;
+		}
+
+		.verified-dropdown-menu {
+			position: absolute;
+			top: 130%;
+			right: 0;
+			background: white;
+			border-radius: 12px;
+			padding: 12px;
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+			min-width: 110px;
+			opacity: 0;
+			transform: translateY(-10px);
+			pointer-events: none;
+			transition: all 0.3s ease;
+			z-index: 100;
+		}
+
+		.verified-dropdown.open .verified-dropdown-menu {
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: auto;
+		}
+
+		.time-display {
+			font-size: 14px;
+			font-weight: 600;
+			color: #2c3e50;
+			text-align: center;
+		}
+
+		.countdown-label {
+			font-size: 12px;
+			color: #888;
+			text-align: center;
+			margin-bottom: 4px;
+			font-weight: 500;
+		}
+
+
+		.user-section {
+			justify-self: end;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			/* profil dan badge lebih rapat */
+		}
+
+		.header-left {
+			justify-self: start;
+		}
+
+		.header-center {
+			justify-self: center;
+		}
+
+		.user-section {
+			justify-self: end;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			/* antara profil dan verified badge */
+		}
+
+
+		.logo {
+			justify-self: start;
+			font-size: 30px;
+			font-weight: bold;
+			color: white;
 		}
 
 		a .logo {
 			text-decoration: none;
 			color: inherit;
+			/* biar warna tetap ikut dari .logo */
 			color: #ffffff;
+			/* pastikan warnanya putih */
 		}
 
 		a {
 			text-decoration: none;
+			/* hilangkan underline dari <a> */
 		}
 
+		.menu {
+			justify-self: center;
+		}
 
 		.menu ul {
 			list-style: none;
@@ -1111,7 +1204,6 @@
 			cursor: pointer;
 			transition: background 0.3s ease;
 		}
-
 		.more .cta:hover {
 			background-color: #2a4175;
 		}
@@ -1130,12 +1222,15 @@
 		}
 	</style>
 	<script>
+		// Toggle FAQ
 		document.querySelectorAll('.faq-question').forEach(question => {
 			question.addEventListener('click', () => {
 				const parent = question.closest('.faq-item');
 				parent.classList.toggle('active');
 			});
 		});
+
+		// Baca Selengkapnya
 		document.getElementById('show-more').addEventListener('click', function () {
 			document.querySelectorAll('.faq-item.hidden').forEach(item => {
 				item.classList.remove('hidden');
@@ -1149,47 +1244,79 @@
 <body>
 	<header>
 		<div class="header-container">
-			<a href="<?= base_url('dashboard') ?>" style="text-decoration: none;">
+			<!-- Logo -->
+			<a href="../member/member.html" style="text-decoration: none;">
 				<div class="logo">FIVY</div>
 			</a>
+
+			<!-- Menu -->
 			<nav class="menu">
 				<ul>
-					<li><a href="<?= base_url('dashboard') ?>">Home</a></li>
-					<li><a href="<?= base_url('dashboard/bacaan') ?>">Daftar Bacaan</a></li>
-					<li>
-						<div id="locknav">Latihan Soal</div>
-					</li>
-					<li>
-						<div id="locknav">Try Out</div>
-					</li>
+					<li><a href="../member/member.html">Home</a></li>
+					<li><a href="../buku/buku.html">Daftar Bacaan</a></li>
+					<li><a href="../latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+					<li><a href="../tryout/tryout.html">Try Out</a></li>
 				</ul>
 			</nav>
-			<div class="profile-dropdown" id="profileDropdown">
-				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
-					<span class="login-button">Login</span>
-				</a>
-			</div>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="../profile/profile.html"
-					style="display: flex; align-items: center; gap: 8px;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
-						stroke="currentColor" stroke-width="1.8">
-						<path stroke-linecap="round" stroke-linejoin="round"
-							d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-						<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20.25a8.25 8.25 0 0115 0" />
-					</svg>
-					Profile
-				</a>
-				<a class="dropdown-item" href="../login/login.html">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-						<path stroke="currentColor"
-							d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
-					</svg>
-					Keluar
-				</a>
+
+			<!-- Gabungan: Profil + Verified -->
+			<div class="user-section">
+				<!-- Profil tetap utuh -->
+				<div class="profile-dropdown" id="profileDropdown">
+					<div class="profile-capsule" onclick="toggleDropdown()">
+						<img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=150&h=150&q=80"
+							alt="Profile" class="profile-pic" />
+						<span class="profile-name">Halo, Davin</span>
+						<span class="dropdown-icon">▼</span>
+					</div>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="../profile/profile.html"
+							style="display: flex; align-items: center; gap: 8px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
+								viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+								<path stroke-linecap="round" stroke-linejoin="round"
+									d="M4.5 20.25a8.25 8.25 0 0115 0" />
+							</svg>
+							Profile
+						</a>
+						<a class="dropdown-item" href="../forum_diskusi/forum_diskusi.html">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<path stroke="currentColor" d="M5 6h14M5 12h10M5 18h7" />
+							</svg>
+							Forum Diskusi
+						</a>
+						<a class="dropdown-item" href="../login/login.html">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<path stroke="currentColor"
+									d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
+							</svg>
+							Keluar
+						</a>
+					</div>
+				</div>
+
+				<!-- Verified badge -->
+				<div class="verified-dropdown" id="verifiedDropdown">
+					<div class="verified-icon" onclick="toggleVerifiedDropdown()">
+						<div class="verified-shape">
+							<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20"
+								height="20">
+								<path fill="none" stroke="#007BFF" stroke-width="3" stroke-linecap="round"
+									stroke-linejoin="round" d="M6 12l4 4 8-8" />
+							</svg>
+						</div>
+					</div>
+					<div class="verified-dropdown-menu" id="dropdownMenu">
+						<div class="countdown-label">Berakhir pada Hari Ini</div>
+						<div class="time-display" id="countdownTimer">11:33:11</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
-		</div>
+
 	</header>
 	<script>
 		const header = document.querySelector('header');
@@ -1203,10 +1330,12 @@
 		});
 
 	</script>
+
 	<section class="hero">
 		<div class="hero-container">
 			<div class="hero-image">
-			    <img src="<?= base_url('assets/images/ban.png') ?>" alt="Siswa Belajar">
+				<img src="../ban.png" alt="Siswa Belajar">
+
 			</div>
 			<div class="hero-text">
 				<h1>Belajar Lebih Mudah & Menyenangkan</h1>
@@ -1224,7 +1353,7 @@
 		<div id="feature">
 			<div class="feature from-left">
 				<img src="https://img.icons8.com/fluency/96/book.png" class="icon" alt="Materi" />
-				<p>Pembelajaran Adaptif dan Menyenangkan</p>
+				<p>Pembelajaran Adaptif & Menyenangkan</p>
 			</div>
 		</div>
 		<div id="feature">
@@ -1242,7 +1371,7 @@
 		<div id="feature">
 			<div class="feature from-right">
 				<img src="https://img.icons8.com/fluency/96/teacher.png" class="icon" alt="Tutor" />
-				<p>Tutor Profesional & Berpengalaman</p>
+				<p>Mentor Profesional & Berpengalaman</p>
 			</div>
 		</div>
 	</section>
@@ -1358,33 +1487,9 @@
 		</div>
 	</section>
 
-	<section class="pricing">
-		<h2 class="pricing-title">Pilih Paket Bimbel Sesuai Kebutuhanmu</h2>
-		<div class="pricing-container">
-			<!-- Paket Dasar -->
-			<div class="price-card">
-				<h3>Paket Mingguan</h3>
-				<p class="price">Rp 45.000/Minggu</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Beli Sekarang</a>
-			</div>
 
-			<!-- Paket Pro -->
-			<div class="price-card highlighted">
-				<h3>Paket Bulanan</h3>
-				<p class="price">Rp 99.000/Bulan</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Paket Favorit</a>
-			</div>
-
-			<!-- Paket Premium -->
-			<div class="price-card">
-				<h3>Paket Tahunan</h3>
-				<p class="price">Rp 149.000/Tahun</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Beli Sekarang</a>
-			</div>
-		</div>
-	</section>
 	<section class="book-section" id="buku">
-		<h2 class="section-title">Rekomendasi Buku Terbaik</h2>
+		<h2 class="section-title">Pembelajaran Yang Menarik</h2>
 		<div class="book-grid">
 
 			<div class="book-card">
@@ -1392,7 +1497,7 @@
 					<img src="https://img.icons8.com/clouds/200/literature.png" alt="Buku Fisika">
 				</div>
 				<div class="book-content">
-					<h3>Bahasa Inggris</h3>
+					<h3>Bahasa Inggris Adaptif</h3>
 					<p>Panduan lengkap konsep dan soal HOTS Bahasa Inggris SMA.</p>
 				</div>
 			</div>
@@ -1412,7 +1517,7 @@
 					<img src="https://img.icons8.com/clouds/200/language.png" alt="Buku Bahasa">
 				</div>
 				<div class="book-content">
-					<h3>Bahasa Indonesia</h3>
+					<h3>Bahasa Indonesia Luwes</h3>
 					<p>Kuasai teks bacaan, struktur, dan soal literasi.</p>
 				</div>
 			</div>
@@ -1422,14 +1527,14 @@
 					<img src="https://img.icons8.com/clouds/200/earth-planet.png" alt="Buku Kimia">
 				</div>
 				<div class="book-content">
-					<h3>Geografi</h3>
+					<h3>Geografi Cegas</h3>
 					<p>Litosfer, Peta, dan soal-soal favorit.</p>
 				</div>
 			</div>
 
 		</div>
 		<div class="more">
-			<button class="cta" onclick="window.location.href='<?= base_url('dashboard/bacaan') ?>'">Baca Selengkapnya</button>
+			<button class="cta" onclick="window.location.href='../buku/buku.html'">Baca Selengkapnya</button>
 		</div>
 	</section>
 
@@ -1442,7 +1547,7 @@
 					<span class="faq-question">Apa itu FIVY?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>FIVY adalah platform belajar online untuk siswa SMA/SMK dengan pendekatan interaktif, fleksibel,
@@ -1456,7 +1561,7 @@
 					<span class="faq-question">Apa perbedaan antara Paket Dasar, Pro, dan Premium?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Paket Dasar cocok untuk belajar mandiri, Pro menawarkan fitur latihan soal, dan Premium
@@ -1470,7 +1575,7 @@
 					<span class="faq-question">Apakah ini bisa diakses oleh perangkat apa saja?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Tentu. FIVY dapat diakses dari HP, tablet, maupun laptop tanpa perlu instalasi aplikasi tambahan.
@@ -1483,7 +1588,7 @@
 					<span class="faq-question">Apakah saya bisa berhenti langganan kapan saja?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Bisa, kamu bisa menghentikan langganan kapan pun melalui menu akun. Tidak ada biaya tambahan.</p>
@@ -1495,7 +1600,7 @@
 					<span class="faq-question">Bagaimana untuk cara pembayaran?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Bisa lewat transfer bank, e-wallet (OVO, GoPay, Dana), atau kartu kredit.</p>
@@ -1559,6 +1664,35 @@
 			});
 		});
 
+		function toggleVerifiedDropdown() {
+			document.getElementById("verifiedDropdown").classList.toggle("open");
+		}
+
+		function startCountdown(hours, minutes, seconds) {
+			let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+			function updateTimer() {
+				if (totalSeconds < 0) {
+					clearInterval(timerInterval);
+					return;
+				}
+
+				const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+				const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+				const s = String(totalSeconds % 60).padStart(2, '0');
+
+				document.getElementById("countdownTimer").textContent = `${h}:${m}:${s}`;
+				totalSeconds--;
+			}
+
+			updateTimer(); // run once immediately
+			const timerInterval = setInterval(updateTimer, 1000);
+		}
+
+		window.addEventListener('DOMContentLoaded', () => {
+			startCountdown(11, 35, 11);
+		});
+
 	</script>
 	<script>
 		function toggleDropdown() {
@@ -1587,10 +1721,10 @@
 		<div class="footer-col">
 			<h3>Quick Links</h3>
 			<ul>
-				<li><a href="<?= base_url('dashboard') ?>">Home</a></li>
-				<li><a href="../bukulock/bukulock.html">Daftar Bacaan</a></li>
-				<li><a href="#" onclick="alert('Halaman Latihan Soal belum tersedia')">Latihan Soal</a></li>
-				<li><a href="#" onclick="alert('Halaman Try Out belum tersedia')">Try Out</a></li>
+				<li><a href="../member/member.html">Home</a></li>
+				<li><a href="../buku/buku.html">Daftar Bacaan</a></li>
+				<li><a href="../latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+				<li><a href="../tryout/tryout.html">Try Out</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
