@@ -7,7 +7,7 @@ class Latihan_soal extends CI_Controller {
         // cek login
         if (!$this->session->userdata('user_id')) {
             $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
-            redirect('auth');
+            redirect('auth/login');
         }
     }
 

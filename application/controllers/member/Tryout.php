@@ -7,7 +7,7 @@ class Tryout extends CI_Controller {
         // Uncomment jika perlu proteksi login
         if (!$this->session->userdata('id_user')) {
             $this->session->set_flashdata('error','Silakan login terlebih dahulu.');
-            redirect('auth');
+            redirect('auth/login');
         }
     }
 

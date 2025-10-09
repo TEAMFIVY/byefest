@@ -1252,10 +1252,10 @@
 			<!-- Menu -->
 			<nav class="menu">
 				<ul>
-					<li><a href="<?= base_url('member/Home')?>/member/member.html">Home</a></li>
-					<li><a href="<?= base_url('member/Buku')?>/buku/buku.html">Daftar Bacaan</a></li>
-					<li><a href="<?= base_url('member/Latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-					<li><a href="<?= base_url('member/Tryout')?>/tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/home')?>/member/member.html">Home</a></li>
+					<li><a href="<?= base_url('member/buku')?>/buku/buku.html">Daftar Bacaan</a></li>
+					<li><a href="<?= base_url('member/latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+					<li><a href="<?= base_url('member/tryout')?>/tryout/tryout.html">Try Out</a></li>
 				</ul>
 			</nav>
 
@@ -1721,10 +1721,10 @@
 		<div class="footer-col">
 			<h3>Quick Links</h3>
 			<ul>
-				<li><a href="../member/member.html">Home</a></li>
-				<li><a href="../buku/buku.html">Daftar Bacaan</a></li>
-				<li><a href="../latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-				<li><a href="../tryout/tryout.html">Try Out</a></li>
+				<li><a href="<?= base_url('member/home')?>/member/member.html">Home</a></li>
+				<li><a href="<?= base_url('member/buku')?>/buku/buku.html">Daftar Bacaan</a></li>
+				<li><a href="<?= base_url('member/latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+				<li><a href="<?= base_url('member/tryout')?>/tryout/tryout.html">Try Out</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
