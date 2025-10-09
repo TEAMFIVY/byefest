@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Tryout</title>
+  <title>Tryout | FIVY</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<?= base_url('assets/buku.css') ?>">
   <style>
-    body{font-family:'Poppins',sans-serif;background:#f4f6fb;margin:0;padding:40px}
+    body{font-family:'Poppins',sans-serif;background:#f4f6fb;margin:0;padding-top:90px}
     .container{max-width:1000px;margin:auto}
     h1{text-align:center;color:#2c3e50;margin-bottom:24px}
     .grid{display:grid;grid-template-columns:1fr;gap:18px}
@@ -19,13 +20,125 @@
     .fill{height:100%;background:linear-gradient(90deg,#4e9af1,#64c2ff);text-align:right;padding-right:8px;color:#fff;font-weight:600}
     .btn{padding:8px 14px;background:#3b5a91;color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
     .small{font-size:13px;color:#666}
-    @media (max-width:780px){ .tryout-row{flex-direction:column;align-items:flex-start} .progress-container{width:100%} }
+    @media (max-width:780px){
+      .tryout-row{flex-direction:column;align-items:flex-start}
+      .progress-container{width:100%}
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar dari halaman Buku -->
+  <header>
+    <div class="header-container">
+      <a href="<?= base_url('member/member.html') ?>" style="text-decoration:none;">
+        <div class="logo">FIVY</div>
+      </a>
+      <nav class="menu">
+				<ul>
+					<li><a href="../member/member.html">Home</a></li>
+					<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
+					<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
+					<li><a href="../tryout/tryout.html">Try Out</a></li>
+				</ul>
+			</nav>
+
+      <div class="user-section">
+        <!-- Dropdown Profil -->
+        <div class="profile-dropdown" id="profileDropdown">
+          <div class="profile-capsule" onclick="toggleDropdown()">
+            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=150&h=150&q=80"
+                alt="Profile" class="profile-pic"/>
+            <span class="profile-name">Halo, Davin</span>
+            <span class="dropdown-icon">▼</span>
+          </div>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="<?= base_url('profile/profile.html') ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M4.5 20.25a8.25 8.25 0 0115 0" />
+              </svg>
+              Profile
+            </a>
+            <a class="dropdown-item" href="<?= base_url('forum_diskusi/forum_diskusi.html') ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" d="M5 6h14M5 12h10M5 18h7" />
+              </svg>
+              Forum Diskusi
+            </a>
+            <a class="dropdown-item" href="<?= base_url('login/login.html') ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor"
+                    d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
+              </svg>
+              Keluar
+            </a>
+          </div>
+        </div>
+
+        <!-- Lencana Verified -->
+        <div class="verified-dropdown" id="verifiedDropdown">
+          <div class="verified-icon" onclick="toggleVerifiedDropdown()">
+            <div class="verified-shape">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="none" stroke="#007BFF" stroke-width="3" stroke-linecap="round"
+                    stroke-linejoin="round" d="M6 12l4 4 8-8" />
+              </svg>
+            </div>
+          </div>
+          <div class="verified-dropdown-menu" id="dropdownMenu">
+            <div class="countdown-label">Berakhir pada Hari Ini</div>
+            <div class="time-display" id="countdownTimer">11:33:11</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    // Efek scroll header
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // Dropdown profil
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.classList.toggle("open");
+    }
+    window.addEventListener('click', function (e) {
+      const dropdown = document.getElementById("profileDropdown");
+      if (!dropdown.contains(e.target)) dropdown.classList.remove("open");
+    });
+
+    // Verified countdown
+    function toggleVerifiedDropdown() {
+      document.getElementById("verifiedDropdown").classList.toggle("open");
+    }
+    function startCountdown(hours, minutes, seconds) {
+      let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+      function updateTimer() {
+        if (totalSeconds < 0) return;
+        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+        const s = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById("countdownTimer").textContent = `${h}:${m}:${s}`;
+        totalSeconds--;
+      }
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+    window.addEventListener('DOMContentLoaded', () => startCountdown(11, 35, 11));
+  </script>
+
+  <!-- Konten Tryout -->
   <div class="container">
     <h1>Tryout</h1>
-
     <div class="grid">
       <?php if (empty($tryouts)): ?>
         <div class="card">Belum ada tryout tersedia.</div>
@@ -58,5 +171,43 @@
       <?php endif; ?>
     </div>
   </div>
+
+  <!-- Footer sama seperti halaman Buku -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Tentang Kami</h3>
+        <p>FIVY adalah solusi belajar online untuk siswa SMA/SMK dengan materi berkualitas dan tutor berpengalaman.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="<?= base_url('member/member.html') ?>">Home</a></li>
+          <li><a href="<?= base_url('buku/buku.html') ?>">Daftar Bacaan</a></li>
+          <li><a href="<?= base_url('latihan_soal/latihan_soal.html') ?>">Latihan Soal</a></li>
+          <li><a href="<?= base_url('tryout/tryout.html') ?>">Try Out</a></li>
+        </ul>
+      </div>
+      <div class="footer-col contact-form">
+        <h3>Kontak</h3>
+        <input type="text" placeholder="Nama Anda">
+        <input type="email" placeholder="Email Anda">
+        <textarea rows="3" placeholder="Pesan Anda"></textarea>
+        <button class="cta">Kirim</button>
+      </div>
+      <div class="footer-col">
+        <h3>Ikuti Kami</h3>
+        <div class="social-icons">
+          <a href="#"><img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"></a>
+          <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
+          <a href="#"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FIVY. All Rights Reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
