@@ -636,8 +636,8 @@
 			<ul>
 				<li><a href="<?= base_url('member/home') ?>">Home</a></li>
 				<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
-				<li><a href="#">Latihan Soal</a></li>
-				<li><a href="#">Tryout</a></li>
+				<li><a href="#" onclick="alert('Halaman Latihan Soal belum tersedia')">Latihan Soal</a></li>
+				<li><a href="#" onclick="alert('Halaman Try Out belum tersedia')">Tryout</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
