@@ -12,8 +12,6 @@ class Auth extends CI_Controller {
     }
 
     public function login_aksi(){
-		var_dump($this->input->post('email'));
-		var_dump($this->input->post('password'));
         $email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['email' => $email])->row();
