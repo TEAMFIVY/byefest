@@ -6,7 +6,7 @@ class Guru extends CI_Controller {
         $this->load->database();
         $this->load->helper(['url','form']);
         $this->load->library(['form_validation','session']);
-		if (!$this->session->userdata('user_id')) {
+		if (!$this->session->userdata('id_user')) {
             $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
             redirect('auth/login');
         }

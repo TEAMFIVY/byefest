@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	{
 		$data['title'] = "Home Admin | ByeFest";
 		$this->template->load('layout/mazer','admin/home', $data);
-		if (!$this->session->userdata('user_id')) {
+		if (!$this->session->userdata('id_user')) {
             $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
             redirect('auth/login');
         }
