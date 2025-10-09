@@ -617,7 +617,7 @@
 					<li><a href="../member/member.html">Home</a></li>
 					<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
 					<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
-					<li><a href="../tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
 				</ul>
 			</nav>
 			<!-- Gabungan: Profil + Verified -->
