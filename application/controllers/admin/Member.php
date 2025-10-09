@@ -6,7 +6,7 @@ class Member extends CI_Controller {
 	public function __construct(){
 		if (!$this->session->userdata('user_id')) {
             $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
-            redirect('auth');
+            redirect('auth/login');
         }
 	}
 

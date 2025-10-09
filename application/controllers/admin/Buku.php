@@ -6,7 +6,7 @@ class Buku extends CI_Controller {
         parent::__construct();
         if (!$this->session->userdata('user_id')) {
             $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
-            redirect('auth');
+            redirect('auth/login');
         }
     }
 
