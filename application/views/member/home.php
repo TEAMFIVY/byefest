@@ -1245,17 +1245,17 @@
 	<header>
 		<div class="header-container">
 			<!-- Logo -->
-			<a href="<?= base_url('dashboard') ?>/member/member.html" style="text-decoration: none;">
+			<a href="<?= base_url('dashboard') ?>" style="text-decoration: none;">
 				<div class="logo">FIVY</div>
 			</a>
 
 			<!-- Menu -->
 			<nav class="menu">
 				<ul>
-					<li><a href="<?= base_url('member/home') ?>/member/member.html">Home</a></li>
-					<li><a href="<?= base_url('member/buku') ?>/buku/buku.html">Daftar Bacaan</a></li>
-					<li><a href="<?= base_url('member/latihan_soal') ?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-					<li><a href="<?= base_url('member/tryout') ?>/tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/home') ?>">Home</a></li>
+					<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
+					<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
+					<li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
 				</ul>
 			</nav>
 
@@ -1287,7 +1287,7 @@
 							</svg>
 							Forum Diskusi
 						</a> -->
-						<a class="dropdown-item" href="<?= base_url('auth/logout')?>/login/login.html">
+						<a class="dropdown-item" href="<?= base_url('auth/logout')?>">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 								<path stroke="currentColor"
 									d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
@@ -1334,7 +1334,7 @@
 	<section class="hero">
 		<div class="hero-container">
 			<div class="hero-image">
-				<img src="../ban.png" alt="Siswa Belajar">
+				<img src="<?= base_url('dashboard')?>/ban.png" alt="Siswa Belajar">
 
 			</div>
 			<div class="hero-text">
@@ -1534,7 +1534,7 @@
 
 		</div>
 		<div class="more">
-			<button class="cta" onclick="window.location.href='<?= base_url('member/detail_buku') ?>/buku/buku.html'">Baca Selengkapnya</button>
+			<button class="cta" onclick="window.location.href='<?= base_url('member/detail_buku') ?>">Baca Selengkapnya</button>
 		</div>
 	</section>
 
@@ -1721,10 +1721,10 @@
 		<div class="footer-col">
 			<h3>Quick Links</h3>
 			<ul>
-				<li><a href="<?= base_url('member/home') ?>/member/member.html">Home</a></li>
-				<li><a href="<?= base_url('member/buku') ?>/buku/buku.html">Daftar Bacaan</a></li>
-				<li><a href="<?= base_url('member/latihan_soal') ?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-				<li><a href="<?= base_url('member/tryout') ?>/tryout/tryout.html">Try Out</a></li>
+				<li><a href="<?= base_url('member/home') ?>">Home</a></li>
+				<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
+				<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
+				<li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
