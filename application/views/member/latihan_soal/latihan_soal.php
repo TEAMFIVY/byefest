@@ -530,7 +530,7 @@
 		.progress-list {
 			display: flex;
 			flex-direction: column;
-			gap: 20px;
+			gap: 22px;
 		}
 
 		.progress-item {
@@ -547,23 +547,31 @@
 			color: #34495e;
 		}
 
+		.progress-label img {
+			width: 30px;
+			height: 30px;
+			object-fit: contain;
+		}
+
+		.progress-info {
+			font-size: 14px;
+			color: #6b7280;
+			font-weight: 500;
+			margin-left: 42px;
+		}
+
 		.progress-track {
-			height: 22px;
+			height: 18px;
 			background: #dfe6f3;
-			border-radius: 10px;
+			border-radius: 999px;
 			overflow: hidden;
+			position: relative;
 		}
 
 		.progress-fill {
 			height: 100%;
 			background: linear-gradient(to right, #4e9af1, #64c2ff);
-			color: white;
-			font-size: 13px;
-			font-weight: 500;
-			padding-left: 10px;
-			display: flex;
-			align-items: center;
-			border-radius: 10px 0 0 10px;
+			border-radius: 999px;
 			transition: width 0.5s ease;
 		}
 
@@ -571,8 +579,8 @@
 			max-width: 200px;
 			align-self: center;
 			margin-top: 15px;
+			animation: fadeInUp 0.8s ease;
 		}
-
 
 		.soal-right {
 			flex: 1;
@@ -589,6 +597,17 @@
 			font-size: 1rem;
 			color: #777;
 			animation: fadeInUp 0.5s ease;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(40px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
 		}
 
 		/* Responsif */
@@ -609,7 +628,7 @@
 <body>
 	<header>
 		<div class="header-container">
-			<a href="../member/member.html" style="text-decoration: none;">
+			<a href="<?= base_url('member/home') ?>" style="text-decoration: none;">
 				<div class="logo">FIVY</div>
 			</a>
 			<nav class="menu">
@@ -683,26 +702,34 @@
 		<div class="soal-left">
 			<h1>Progress Belajar Kamu 📘</h1>
 			<p>
-				Pantau perkembanganmu dalam mengerjakan soal-soal interaktif. Raih target belajar dengan konsisten dan
-				menyenangkan!
+				Pantau perkembanganmu dalam mengerjakan soal-soal interaktif. Raih target belajar dengan konsisten dan menyenangkan!
 			</p>
+
 			<div class="progress-list">
-                <?php foreach ($progress as $mapel => $p): ?>
-                    <div class="progress-item">
-                        <div class="progress-label">
-                            <img src="<?= $p['icon'] ?>" alt="<?= $mapel ?>" />
-                            <span><?= $mapel ?></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" style="width: <?= $p['persentase'] ?>%">
-                                <?= $p['bab_selesai'] ?>/<?= $p['total_bab'] ?> Bab
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-			<img class="progress-image" src="https://img.icons8.com/fluency/200/student-male--v1.png"
-				alt="Siswa Belajar">
+				<?php foreach ($progress as $mapel => $p): ?>
+					<div class="progress-item">
+						<div class="progress-label">
+							<img src="<?= $p['icon'] ?>" alt="<?= $mapel ?>" />
+							<span><?= $mapel ?></span>
+						</div>
+
+						<!-- Angka progress di atas bar -->
+						<div class="progress-info">
+							<?= $p['bab_selesai'] ?>/<?= $p['total_bab'] ?> Bab
+						</div>
+
+						<div class="progress-track">
+							<div class="progress-fill" style="width: <?= $p['persentase'] ?>%"></div>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+
+			<img
+				class="progress-image"
+				src="https://img.icons8.com/fluency/200/student-male--v1.png"
+				alt="Siswa Belajar"
+			/>
 		</div>
 
         <?php 

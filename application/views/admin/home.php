@@ -1,6 +1,5 @@
 <div class="container-fluid mt-4">
 	<div class="row g-4 mb-5">
-
 		<!-- Total Buku -->
 		<div class="col-xl-3 col-md-6">
 			<div class="card bg-white border-0 shadow-lg h-100 p-3 rounded-4 lift-up-hover">
@@ -57,23 +56,6 @@
 					<div class="flex-shrink-0">
 						<i class="fas fa-clipboard-list fa-3x text-danger opacity-50"></i>
 					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-	<!-- Grafik Aktivitas -->
-	<div class="row g-4">
-		<div class="col-lg-8">
-			<div class="card bg-white border-0 shadow-lg h-100 rounded-4">
-				<div class="card-header bg-primary text-white border-0 p-3 rounded-top-4">
-					<h6 class="mb-0 fw-bold">
-						<i class="fas fa-chart-line me-2"></i> Aktivitas Pendaftaran Member (7 Hari Terakhir)
-					</h6>
-				</div>
-				<div class="card-body">
-					<!-- Tempatkan chart di sini -->
 				</div>
 			</div>
 		</div>
