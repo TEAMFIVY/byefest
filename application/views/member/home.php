@@ -1334,7 +1334,7 @@
 	<section class="hero">
 		<div class="hero-container">
 			<div class="hero-image">
-				<img src="<?= base_url('dashboard')?>/ban.png" alt="Siswa Belajar">
+			<img src="<?= base_url('assets/images/ban.png') ?>" alt="Siswa Belajar">
 
 			</div>
 			<div class="hero-text">

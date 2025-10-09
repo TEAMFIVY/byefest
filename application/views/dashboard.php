@@ -1165,28 +1165,16 @@
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
 				<?php if (!$this->session->userdata('id_user')): ?>
-				<!-- Kalau belum login -->
 				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
 				</a>
 				<?php else: ?>
-				<!-- Kalau sudah login -->
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<?= base_url('profile') ?>"
-						style="display: flex; align-items: center; gap: 8px;">
-						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
-							stroke="currentColor" stroke-width="1.8">
-							<path stroke-linecap="round" stroke-linejoin="round"
-								d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20.25a8.25 8.25 0 0115 0" />
-						</svg>
+				<div class="dropdown-menu show">
+					<!-- tambahkan "show" kalau mau muncul langsung -->
+					<a class="dropdown-item" href="<?= base_url('profile') ?>">
 						Profile
 					</a>
 					<a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-							<path stroke="currentColor"
-								d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
-						</svg>
 						Keluar
 					</a>
 				</div>
