@@ -1245,17 +1245,17 @@
 	<header>
 		<div class="header-container">
 			<!-- Logo -->
-			<a href="<?= base_url('dashboard')?>/member/member.html" style="text-decoration: none;">
+			<a href="<?= base_url('dashboard') ?>/member/member.html" style="text-decoration: none;">
 				<div class="logo">FIVY</div>
 			</a>
 
 			<!-- Menu -->
 			<nav class="menu">
 				<ul>
-					<li><a href="<?= base_url('member/home')?>/member/member.html">Home</a></li>
-					<li><a href="<?= base_url('member/buku')?>/buku/buku.html">Daftar Bacaan</a></li>
-					<li><a href="<?= base_url('member/latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-					<li><a href="<?= base_url('member/tryout')?>/tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/home') ?>/member/member.html">Home</a></li>
+					<li><a href="<?= base_url('member/buku') ?>/buku/buku.html">Daftar Bacaan</a></li>
+					<li><a href="<?= base_url('member/latihan_soal') ?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+					<li><a href="<?= base_url('member/tryout') ?>/tryout/tryout.html">Try Out</a></li>
 				</ul>
 			</nav>
 
@@ -1534,7 +1534,7 @@
 
 		</div>
 		<div class="more">
-			<button class="cta" onclick="window.location.href='../buku/buku.html'">Baca Selengkapnya</button>
+			<button class="cta" onclick="window.location.href='<?= base_url('member/detail_buku') ?>/buku/buku.html'">Baca Selengkapnya</button>
 		</div>
 	</section>
 
@@ -1721,10 +1721,10 @@
 		<div class="footer-col">
 			<h3>Quick Links</h3>
 			<ul>
-				<li><a href="<?= base_url('member/home')?>/member/member.html">Home</a></li>
-				<li><a href="<?= base_url('member/buku')?>/buku/buku.html">Daftar Bacaan</a></li>
-				<li><a href="<?= base_url('member/latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-				<li><a href="<?= base_url('member/tryout')?>/tryout/tryout.html">Try Out</a></li>
+				<li><a href="<?= base_url('member/home') ?>/member/member.html">Home</a></li>
+				<li><a href="<?= base_url('member/buku') ?>/buku/buku.html">Daftar Bacaan</a></li>
+				<li><a href="<?= base_url('member/latihan_soal') ?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+				<li><a href="<?= base_url('member/tryout') ?>/tryout/tryout.html">Try Out</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
