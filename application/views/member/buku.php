@@ -34,7 +34,7 @@
                           <span class="dropdown-icon">▼</span>
                       </div>
                       <div class="dropdown-menu">
-                          <a class="dropdown-item" href="<?= base_url('assets/buku.css') ?>../profile/profile.html"
+                          <!-- <a class="dropdown-item" href="<?= base_url('assets/buku.css') ?>../profile/profile.html"
                               style="display: flex; align-items: center; gap: 8px;">
                               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
                                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -50,8 +50,8 @@
                                   <path stroke="currentColor" d="M5 6h14M5 12h10M5 18h7" />
                               </svg>
                               Forum Diskusi
-                          </a>
-                          <a class="dropdown-item" href="<?= base_url('assets/buku.css') ?>../login/login.html">
+                          </a> -->
+                          <a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                   <path stroke="currentColor"
                                       d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
