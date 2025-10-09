@@ -21,6 +21,7 @@ class Latihan extends CI_Controller {
             'judul'         => $this->input->post('judul'),
             'tingkat_kelas' => $this->input->post('tingkat_kelas'),
             'mapel' => $this->input->post('mapel'),
+            'bab' => $this->input->post('bab'),
         ];
         $this->db->insert('latihan_soal', $data);
         $id = $this->db->insert_id();
@@ -35,6 +36,7 @@ class Latihan extends CI_Controller {
             'judul'         => $this->input->post('judul'),
             'tingkat_kelas' => $this->input->post('tingkat_kelas'),
             'mapel' => $this->input->post('mapel'),
+            'bab' => $this->input->post('bab'),
         ];
         $this->db->where('id_latihan', $id)->update('latihan_soal', $data);
         $this->session->set_flashdata('success', 'Latihan soal berhasil diupdate.');
