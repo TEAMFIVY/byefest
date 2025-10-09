@@ -17,10 +17,10 @@
         </a>
         <nav class="menu">
           <ul>
-            <li><a href="<?= base_url('assets/buku.css') ?>../member/member.html">Home</a></li>
-            <li><a href="<?= base_url('assets/buku.css') ?>../buku/buku.html">Daftar Bacaan</a></li>
-            <li><a href="<?= base_url('assets/buku.css') ?>../latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-            <li><a href="<?= base_url('assets/buku.css') ?>../tryout/tryout.html">Try Out</a></li>
+            <li><a href="<?= base_url('member/home') ?>">Home</a></li>
+            <li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
+            <li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
+            <li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
           </ul>
         </nav>
         <!-- Gabungan: Profil + Verified -->
