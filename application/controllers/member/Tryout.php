@@ -158,4 +158,23 @@ class Tryout extends CI_Controller {
 
         $this->load->view('member/tryout/hasil_jawaban', $data);
     }
+
+    public function hasil_terakhir($id_tryout) {
+        $id_user = $this->session->userdata('id_user') ?? 0;
+
+        $hasil = $this->db
+            ->where('id_user', $id_user)
+            ->where('id_tryout', $id_tryout)
+            ->order_by('tanggal', 'DESC')
+            ->limit(1)
+            ->get('hasil_tryout')
+            ->row();
+
+        if (!$hasil) {
+            $this->session->set_flashdata('error', 'Belum ada hasil untuk tryout ini.');
+            redirect('member/tryout');
+        }
+
+        redirect('member/tryout/hasil/'.$hasil->id_hasil_tryout);
+    }
 }
