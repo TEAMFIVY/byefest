@@ -127,7 +127,6 @@
 		<div class="payment-card">
 			<h2>Konfirmasi Pembayaran</h2>
 			<p class="subtext">Silakan periksa kembali data dan pilih metode pembayaran Anda</p>
-
 			<div class="summary-box">
 				<div class="summary-item">
 					<span>Paket:</span>
@@ -151,12 +150,12 @@
 			<div class="payment-methods">
 				<label class="method">
 					<input type="radio" name="metode" checked>
-					<img src="../ovo.svg" alt="OVO" width="55" />
+					<img src="<?= base_url('assets/images/ovo.svg') ?>" alt="OVO" width="55" />
 					<span>OVO</span>
 				</label>
 				<label class="method">
 					<input type="radio" name="metode">
-					<img src="../dana.svg" alt="DANA" width="55" />
+					<img src="<?= base_url('assets/images/dana.svg') ?>" alt="DANA" width="55" />
 					<span>DANA</span>
 				</label>
 				<label class="method">
