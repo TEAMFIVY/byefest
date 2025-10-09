@@ -1245,17 +1245,17 @@
 	<header>
 		<div class="header-container">
 			<!-- Logo -->
-			<a href="../member/member.html" style="text-decoration: none;">
+			<a href="<?= base_url('dashboard')?>/member/member.html" style="text-decoration: none;">
 				<div class="logo">FIVY</div>
 			</a>
 
 			<!-- Menu -->
 			<nav class="menu">
 				<ul>
-					<li><a href="../member/member.html">Home</a></li>
-					<li><a href="../buku/buku.html">Daftar Bacaan</a></li>
-					<li><a href="../latihan_soal/latihan_soal.html">Latihan Soal</a></li>
-					<li><a href="../tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/Home')?>/member/member.html">Home</a></li>
+					<li><a href="<?= base_url('member/Buku')?>/buku/buku.html">Daftar Bacaan</a></li>
+					<li><a href="<?= base_url('member/Latihan_soal')?>/latihan_soal/latihan_soal.html">Latihan Soal</a></li>
+					<li><a href="<?= base_url('member/Tryout')?>/tryout/tryout.html">Try Out</a></li>
 				</ul>
 			</nav>
 
@@ -1270,7 +1270,7 @@
 						<span class="dropdown-icon">▼</span>
 					</div>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="../profile/profile.html"
+						<!-- <a class="dropdown-item" href="../profile/profile.html"
 							style="display: flex; align-items: center; gap: 8px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
 								viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -1280,14 +1280,14 @@
 									d="M4.5 20.25a8.25 8.25 0 0115 0" />
 							</svg>
 							Profile
-						</a>
-						<a class="dropdown-item" href="../forum_diskusi/forum_diskusi.html">
+						</a> -->
+						<!-- <a class="dropdown-item" href="../forum_diskusi/forum_diskusi.html">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 								<path stroke="currentColor" d="M5 6h14M5 12h10M5 18h7" />
 							</svg>
 							Forum Diskusi
-						</a>
-						<a class="dropdown-item" href="../login/login.html">
+						</a> -->
+						<a class="dropdown-item" href="<?= base_url('auth/logout')?>/login/login.html">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 								<path stroke="currentColor"
 									d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />

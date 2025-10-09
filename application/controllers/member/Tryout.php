@@ -5,10 +5,10 @@ class Tryout extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // Uncomment jika perlu proteksi login
-        // if (!$this->session->userdata('id_user')) {
-        //     $this->session->set_flashdata('error','Silakan login terlebih dahulu.');
-        //     redirect('auth');
-        // }
+        if (!$this->session->userdata('id_user')) {
+            $this->session->set_flashdata('error','Silakan login terlebih dahulu.');
+            redirect('auth');
+        }
     }
 
     // Halaman daftar tryout (siswa)
