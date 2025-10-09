@@ -36,7 +36,7 @@
       </a>
       <nav class="menu">
 				<ul>
-					<li><a href="<?= base_url('dashboard') ?>">Home</a></li>
+					<li><a href="<?= base_url('member/home') ?>">Home</a></li>
 					<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
 					<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
 					<li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
