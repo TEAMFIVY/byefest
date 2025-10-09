@@ -36,10 +36,10 @@
       </a>
       <nav class="menu">
 				<ul>
-					<li><a href="../member/member.html">Home</a></li>
+					<li><a href="<?= base_url('dashboard') ?>">Home</a></li>
 					<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
 					<li><a href="<?= base_url('member/latihan_soal') ?>">Latihan Soal</a></li>
-					<li><a href="../tryout/tryout.html">Try Out</a></li>
+					<li><a href="<?= base_url('member/tryout') ?>">Try Out</a></li>
 				</ul>
 			</nav>
 
@@ -53,7 +53,7 @@
             <span class="dropdown-icon">▼</span>
           </div>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= base_url('profile/profile.html') ?>">
+            <!-- <a class="dropdown-item" href="<?= base_url('profile/profile.html') ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -68,8 +68,8 @@
                 <path stroke="currentColor" d="M5 6h14M5 12h10M5 18h7" />
               </svg>
               Forum Diskusi
-            </a>
-            <a class="dropdown-item" href="<?= base_url('login/login.html') ?>">
+            </a> -->
+            <a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor"
                     d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
@@ -171,43 +171,6 @@
       <?php endif; ?>
     </div>
   </div>
-
-  <!-- Footer sama seperti halaman Buku -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>Tentang Kami</h3>
-        <p>FIVY adalah solusi belajar online untuk siswa SMA/SMK dengan materi berkualitas dan tutor berpengalaman.</p>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="<?= base_url('member/member.html') ?>">Home</a></li>
-          <li><a href="<?= base_url('buku/buku.html') ?>">Daftar Bacaan</a></li>
-          <li><a href="<?= base_url('latihan_soal/latihan_soal.html') ?>">Latihan Soal</a></li>
-          <li><a href="<?= base_url('tryout/tryout.html') ?>">Try Out</a></li>
-        </ul>
-      </div>
-      <div class="footer-col contact-form">
-        <h3>Kontak</h3>
-        <input type="text" placeholder="Nama Anda">
-        <input type="email" placeholder="Email Anda">
-        <textarea rows="3" placeholder="Pesan Anda"></textarea>
-        <button class="cta">Kirim</button>
-      </div>
-      <div class="footer-col">
-        <h3>Ikuti Kami</h3>
-        <div class="social-icons">
-          <a href="#"><img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"></a>
-          <a href="#"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
-          <a href="#"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube"></a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 FIVY. All Rights Reserved.</p>
-    </div>
-  </footer>
 
 </body>
 </html>
