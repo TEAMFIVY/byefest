@@ -529,9 +529,16 @@
 				</ul>
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
+				<?php if (empty($this->session->userdata('id_user'))): ?>
+
 				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
 				</a>
+				<?php else: ?>
+					<a href="<?= base_url('auth/logout') ?>" class="profile-capsule">
+					<span class="login-button">logout</span>
+				</a>
+				<?php endif; ?>
 			</div>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="../profile/profile.html"

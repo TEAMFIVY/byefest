@@ -1170,15 +1170,9 @@
 					<span class="login-button">Login</span>
 				</a>
 				<?php else: ?>
-				<div class="dropdown-menu show">
-					<!-- tambahkan "show" kalau mau muncul langsung -->
-					<a class="dropdown-item" href="<?= base_url('profile') ?>">
-						Profile
-					</a>
-					<a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
-						Keluar
-					</a>
-				</div>
+					<a href="<?= base_url('auth/logout') ?>" class="profile-capsule">
+					<span class="login-button">logout</span>
+				</a>
 				<?php endif; ?>
 			</div>
 		</div>
