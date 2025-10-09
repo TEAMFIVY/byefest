@@ -1164,7 +1164,7 @@
 				</ul>
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
-				<?php if (!$this->session->userdata('user_id')): ?>
+				<?php if (!$this->session->userdata('id_user')): ?>
 				<!-- Kalau belum login -->
 				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
@@ -1368,7 +1368,7 @@
 			<div class="price-card">
 				<h3>Paket Mingguan</h3>
 				<p class="price">Rp 45.000/Minggu</p>
-				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Beli
+				<a href="<?= base_url('dashboard/pembayaran')?>" class="cta">Beli
 					Sekarang</a>
 			</div>
 
@@ -1376,7 +1376,7 @@
 			<div class="price-card highlighted">
 				<h3>Paket Bulanan</h3>
 				<p class="price">Rp 99.000/Bulan</p>
-				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Paket
+				<a href="<?= base_url('dashboard/pembayaran')?>" class="cta">Paket
 					Favorit</a>
 			</div>
 
@@ -1384,7 +1384,7 @@
 			<div class="price-card">
 				<h3>Paket Tahunan</h3>
 				<p class="price">Rp 149.000/Tahun</p>
-				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Beli
+				<a href="<?= base_url('pilih_paket')?>" class="cta">Beli
 					Sekarang</a>
 			</div>
 		</div>
@@ -1592,7 +1592,7 @@
 			<h3>Quick Links</h3>
 			<ul>
 				<li><a href="<?= base_url('dashboard') ?>">Home</a></li>
-				<li><a href="../bukulock/bukulock.html">Daftar Bacaan</a></li>
+				<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
 				<li><a href="#" onclick="alert('Halaman Latihan Soal belum tersedia')">Latihan Soal</a></li>
 				<li><a href="#" onclick="alert('Halaman Try Out belum tersedia')">Try Out</a></li>
 			</ul>
