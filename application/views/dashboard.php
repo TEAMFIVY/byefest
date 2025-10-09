@@ -1142,7 +1142,6 @@
 			});
 			this.style.display = 'none';
 		});
-
 	</script>
 </head>
 
@@ -1165,28 +1164,33 @@
 				</ul>
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
+				<?php if (!$this->session->userdata('user_id')): ?>
+				<!-- Kalau belum login -->
 				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
 				</a>
-			</div>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="../profile/profile.html"
-					style="display: flex; align-items: center; gap: 8px;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
-						stroke="currentColor" stroke-width="1.8">
-						<path stroke-linecap="round" stroke-linejoin="round"
-							d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-						<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20.25a8.25 8.25 0 0115 0" />
-					</svg>
-					Profile
-				</a>
-				<a class="dropdown-item" href="../login/login.html">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-						<path stroke="currentColor"
-							d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
-					</svg>
-					Keluar
-				</a>
+				<?php else: ?>
+				<!-- Kalau sudah login -->
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="<?= base_url('profile') ?>"
+						style="display: flex; align-items: center; gap: 8px;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+							stroke="currentColor" stroke-width="1.8">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+							<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20.25a8.25 8.25 0 0115 0" />
+						</svg>
+						Profile
+					</a>
+					<a class="dropdown-item" href="<?= base_url('auth/logout') ?>">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor"
+								d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
+						</svg>
+						Keluar
+					</a>
+				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 		</div>
@@ -1201,12 +1205,11 @@
 				header.classList.remove('scrolled');
 			}
 		});
-
 	</script>
 	<section class="hero">
 		<div class="hero-container">
 			<div class="hero-image">
-			    <img src="<?= base_url('assets/images/ban.png') ?>" alt="Siswa Belajar">
+				<img src="<?= base_url('assets/images/ban.png') ?>" alt="Siswa Belajar">
 			</div>
 			<div class="hero-text">
 				<h1>Belajar Lebih Mudah & Menyenangkan</h1>
@@ -1365,21 +1368,24 @@
 			<div class="price-card">
 				<h3>Paket Mingguan</h3>
 				<p class="price">Rp 45.000/Minggu</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Beli Sekarang</a>
+				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Beli
+					Sekarang</a>
 			</div>
 
 			<!-- Paket Pro -->
 			<div class="price-card highlighted">
 				<h3>Paket Bulanan</h3>
 				<p class="price">Rp 99.000/Bulan</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Paket Favorit</a>
+				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Paket
+					Favorit</a>
 			</div>
 
 			<!-- Paket Premium -->
 			<div class="price-card">
 				<h3>Paket Tahunan</h3>
 				<p class="price">Rp 149.000/Tahun</p>
-				<a href="../forum_paket/forum_paket.html" class="cta">Beli Sekarang</a>
+				<a href="<?= base_url('dashboard/pembayaran')?>/forum_paket/forum_paket.html" class="cta">Beli
+					Sekarang</a>
 			</div>
 		</div>
 	</section>
@@ -1429,7 +1435,8 @@
 
 		</div>
 		<div class="more">
-			<button class="cta" onclick="window.location.href='<?= base_url('dashboard/bacaan') ?>'">Baca Selengkapnya</button>
+			<button class="cta" onclick="window.location.href='<?= base_url('dashboard/bacaan') ?>'">Baca
+				Selengkapnya</button>
 		</div>
 	</section>
 
@@ -1442,7 +1449,7 @@
 					<span class="faq-question">Apa itu FIVY?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>FIVY adalah platform belajar online untuk siswa SMA/SMK dengan pendekatan interaktif, fleksibel,
@@ -1456,7 +1463,7 @@
 					<span class="faq-question">Apa perbedaan antara Paket Dasar, Pro, dan Premium?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Paket Dasar cocok untuk belajar mandiri, Pro menawarkan fitur latihan soal, dan Premium
@@ -1470,7 +1477,7 @@
 					<span class="faq-question">Apakah ini bisa diakses oleh perangkat apa saja?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Tentu. FIVY dapat diakses dari HP, tablet, maupun laptop tanpa perlu instalasi aplikasi tambahan.
@@ -1483,7 +1490,7 @@
 					<span class="faq-question">Apakah saya bisa berhenti langganan kapan saja?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Bisa, kamu bisa menghentikan langganan kapan pun melalui menu akun. Tidak ada biaya tambahan.</p>
@@ -1495,7 +1502,7 @@
 					<span class="faq-question">Bagaimana untuk cara pembayaran?</span>
 					<svg class="faq-icon" viewBox="0 0 24 24">
 						<path d="M6 9l6 6 6-6" stroke="#3b5a91" stroke-width="2" fill="none" stroke-linecap="round" />
-						</svg>
+					</svg>
 				</button>
 				<div class="faq-content">
 					<p>Bisa lewat transfer bank, e-wallet (OVO, GoPay, Dana), atau kartu kredit.</p>
@@ -1532,7 +1539,6 @@
 				});
 			}
 		});
-
 	</script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
@@ -1558,7 +1564,6 @@
 				bar.appendChild(percentLabel);
 			});
 		});
-
 	</script>
 	<script>
 		function toggleDropdown() {
@@ -1572,7 +1577,6 @@
 				dropdown.classList.remove("open");
 			}
 		});
-
 	</script>
 
 

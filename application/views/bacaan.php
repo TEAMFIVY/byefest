@@ -529,7 +529,7 @@
 				</ul>
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
-				<a href="../login/login.html" class="profile-capsule">
+				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
 				</a>
 			</div>
@@ -550,7 +550,7 @@
 					</svg>
 					Forum Diskusi
 				</a>
-				<a class="dropdown-item" href="../login/login.html">
+				<a class="dropdown-item" href="<?= base_url('auth/login') ?>">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor"
 							d="M15 3h4a2 2 0 0 1 2 2v4m-6 12h4a2 2 0 0 0 2-2v-4m-6 0L3 3m0 18L21 3" />
@@ -634,10 +634,10 @@
 		<div class="footer-col">
 			<h3>Quick Links</h3>
 			<ul>
-				<li><a href="#">Beranda</a></li>
-				<li><a href="#">Fitur</a></li>
-				<li><a href="#">Testimoni</a></li>
-				<li><a href="#">Kontak</a></li>
+				<li><a href="<?= base_url('member/home') ?>">Home</a></li>
+				<li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
+				<li><a href="#">Latihan Soal</a></li>
+				<li><a href="#">Tryout</a></li>
 			</ul>
 		</div>
 		<div class="footer-col contact-form">
