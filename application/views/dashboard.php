@@ -1164,7 +1164,8 @@
 				</ul>
 			</nav>
 			<div class="profile-dropdown" id="profileDropdown">
-				<?php if (!$this->session->userdata('id_user')): ?>
+				<?php if (empty($this->session->userdata('id_user'))): ?>
+
 				<a href="<?= base_url('auth/login') ?>" class="profile-capsule">
 					<span class="login-button">Login</span>
 				</a>
