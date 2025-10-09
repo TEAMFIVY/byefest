@@ -78,28 +78,127 @@
 												</div>
 												<div class="modal-body">
 													<input type="hidden" name="id" value="<?= $b->id ?>">
+
 													<div class="mb-3">
 														<label for="judul<?= $b->id ?>" class="form-label">Judul Buku</label>
 														<input type="text" class="form-control" id="judul<?= $b->id ?>"
 															name="judul" value="<?= $b->judul ?>" required>
 													</div>
+
 													<div class="mb-3">
 														<label for="mapel<?= $b->id ?>" class="form-label">Mata
 															Pelajaran</label>
-														<input type="text" class="form-control" id="mapel<?= $b->id ?>"
-															name="mapel" value="<?= $b->mapel ?>" required>
+														<select class="form-select" id="mapel<?= $b->id ?>" name="mapel"
+															required>
+															<option value="">-- Pilih Mata Pelajaran --</option>
+
+															<optgroup label="Mata Pelajaran Umum">
+																<option value="agama" <?= $b->mapel=='agama'?'selected':'' ?>>
+																	Pendidikan Agama dan Budi Pekerti</option>
+																<option value="ppkn" <?= $b->mapel=='ppkn'?'selected':'' ?>>
+																	PPKn</option>
+																<option value="bindo" <?= $b->mapel=='bindo'?'selected':'' ?>>
+																	Bahasa Indonesia</option>
+																<option value="matumum"
+																	<?= $b->mapel=='matumum'?'selected':'' ?>>Matematika Umum
+																</option>
+																<option value="ipa"
+																	<?= $b->mapel=='ipa'?'selected':'' ?>>IPA
+																</option>
+																<option value="ips"
+																	<?= $b->mapel=='ips'?'selected':'' ?>>IPS
+																</option>
+																<option value="sejarahind"
+																	<?= $b->mapel=='sejarahind'?'selected':'' ?>>Sejarah
+																	Indonesia</option>
+																<option value="binggris"
+																	<?= $b->mapel=='binggris'?'selected':'' ?>>Bahasa Inggris
+																</option>
+																<option value="senibudaya"
+																	<?= $b->mapel=='senibudaya'?'selected':'' ?>>Seni Budaya
+																</option>
+																<option value="pjok" <?= $b->mapel=='pjok'?'selected':'' ?>>
+																	PJOK</option>
+																<option value="prakarya"
+																	<?= $b->mapel=='prakarya'?'selected':'' ?>>Prakarya dan
+																	Kewirausahaan</option>
+																<option value="informatika"
+																	<?= $b->mapel=='informatika'?'selected':'' ?>>Informatika</option>
+															</optgroup>
+
+															<optgroup label="Peminatan MIPA">
+																<option value="matpem"
+																	<?= $b->mapel=='matpem'?'selected':'' ?>>Matematika
+																	(Peminatan)</option>
+																<option value="fisika"
+																	<?= $b->mapel=='fisika'?'selected':'' ?>>Fisika</option>
+																<option value="kimia" <?= $b->mapel=='kimia'?'selected':'' ?>>
+																	Kimia</option>
+																<option value="biologi"
+																	<?= $b->mapel=='biologi'?'selected':'' ?>>Biologi</option>
+															</optgroup>
+
+															<optgroup label="Peminatan IPS">
+																<option value="geografi"
+																	<?= $b->mapel=='geografi'?'selected':'' ?>>Geografi
+																</option>
+																<option value="sejarah"
+																	<?= $b->mapel=='sejarah'?'selected':'' ?>>Sejarah</option>
+																<option value="sosiologi"
+																	<?= $b->mapel=='sosiologi'?'selected':'' ?>>Sosiologi
+																</option>
+																<option value="ekonomi"
+																	<?= $b->mapel=='ekonomi'?'selected':'' ?>>Ekonomi</option>
+															</optgroup>
+
+															<optgroup label="Peminatan Bahasa">
+																<option value="bsi" <?= $b->mapel=='bsi'?'selected':'' ?>>
+																	Bahasa dan Sastra Indonesia</option>
+																<option value="bse" <?= $b->mapel=='bse'?'selected':'' ?>>
+																	Bahasa dan Sastra Inggris</option>
+																<option value="basing"
+																	<?= $b->mapel=='basing'?'selected':'' ?>>Bahasa Asing Lain
+																</option>
+																<option value="antropologi"
+																	<?= $b->mapel=='antropologi'?'selected':'' ?>>Antropologi
+																</option>
+															</optgroup>
+														</select>
 													</div>
+
 													<div class="mb-3">
 														<label for="kelas<?= $b->id ?>" class="form-label">Kelas</label>
-														<input type="text" class="form-control" id="kelas<?= $b->id ?>"
-															name="kelas" value="<?= $b->kelas ?>" required>
+														<select class="form-select" name="kelas" id="kelas<?= $b->id ?>"
+															required>
+															<option value="">Pilih Kelas</option>
+															<optgroup label="Kelas Biasa">
+																<option value="X" <?= $b->kelas=='X'?'selected':'' ?>>X
+																</option>
+																<option value="XI" <?= $b->kelas=='XI'?'selected':'' ?>>XI
+																</option>
+																<option value="XII" <?= $b->kelas=='XII'?'selected':'' ?>>XII
+																</option>
+															</optgroup>
+
+															<optgroup label="Kelas Khusus">
+																<option value="TKA" <?= $b->kelas=='TKA'?'selected':'' ?>>TKA
+																</option>
+																<option value="UTBK" <?= $b->kelas=='UTBK'?'selected':'' ?>>
+																	UTBK</option>
+															</optgroup>
+														</select>
 													</div>
+
 													<div class="mb-3">
 														<label for="cover<?= $b->id ?>" class="form-label">Cover Buku</label>
 														<input type="file" class="form-control" id="cover<?= $b->id ?>"
 															name="cover">
+														<?php if (!empty($b->cover)): ?>
+														<small class="text-muted">Cover saat ini: <?= $b->cover ?></small>
+														<?php endif; ?>
 													</div>
 												</div>
+
 												<div class="modal-footer">
 													<button type="button" class="btn btn-light-secondary"
 														data-bs-dismiss="modal">Batal</button>
@@ -109,6 +208,7 @@
 										</div>
 									</div>
 								</div>
+
 
 								<!-- Modal Delete -->
 								<div class="modal fade" id="deleteBookModal<?= $b->id ?>" tabindex="-1" aria-hidden="true">
@@ -135,47 +235,6 @@
 									</div>
 								</div>
 
-								<!-- Modal Tambah Bab -->
-								<!-- <div class="modal fade" id="addBabModal<?= $b->id ?>" tabindex="-1" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered modal-lg">
-										<div class="modal-content">
-											<form action="<?= site_url('admin/bab/simpan') ?>" method="post">
-												<div class="modal-header">
-													<h5 class="modal-title">Tambah Bab untuk Buku: <?= $b->judul ?></h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-												</div>
-												<div class="modal-body">
-													<input type="hidden" name="id_buku" value="<?= $b->id ?>">
-
-													<div class="mb-3">
-														<label for="judul_bab<?= $b->id ?>" class="form-label">Judul
-															Bab</label>
-														<input type="text" class="form-control" id="judul_bab<?= $b->id ?>"
-															name="judul_bab" required>
-													</div>
-
-													<div class="mb-3">
-														<label for="urutan<?= $b->id ?>" class="form-label">Urutan</label>
-														<input type="text" class="form-control" id="urutan<?= $b->id ?>"
-															name="urutan" placeholder="Misal: 1 atau Bab I">
-													</div>
-
-													<div class="mb-3">
-														<label for="isi<?= $b->id ?>" class="form-label">Isi Bab</label>
-														<textarea class="form-control" id="isi<?= $b->id ?>" name="isi"
-															rows="4" required></textarea>
-													</div>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-light-secondary"
-														data-bs-dismiss="modal">Batal</button>
-													<button type="submit" class="btn btn-success">Simpan Bab</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div> -->
-
 								<?php endforeach; ?>
 							</tbody>
 						</table>
@@ -187,172 +246,176 @@
 
 		<!-- Modal Kelola Bab -->
 		<?php foreach ($books as $b): ?>
-		<!-- Tombol untuk buka modal -->
-		<!-- <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addBabModal<?= $b->id ?>">
-			<i class="bi bi-book"></i>
-		</button> -->
+			<!-- Tombol untuk buka modal -->
+			<!-- <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addBabModal<?= $b->id ?>">
+				<i class="bi bi-book"></i>
+			</button> -->
 
-		<!-- Modal untuk buku ini -->
-		<div class="modal fade" id="addBabModal<?= $b->id ?>" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Kelola Bab - <?= $b->judul ?></h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-					<div class="modal-body">
-
-						<!-- Tombol Tambah Bab -->
-						<button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambahBab<?= $b->id ?>">
-							<i class="bi bi-plus-circle"></i> Tambah Bab
-						</button>
-
-						<!-- Tabel Daftar Bab -->
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Judul Bab</th>
-										<th>Urutan</th>
-										<th>Isi</th>
-										<th class="text-center">Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php 
-                                $babList = $this->db->get_where('bab', ['id_buku' => $b->id])->result();
-                                foreach ($babList as $bab): ?>
-									<tr>
-										<td><?= $bab->judul_bab ?></td>
-										<td><?= $bab->urutan ?></td>
-										<td><?= substr($bab->isi,0,30) ?>...</td>
-										<td class="text-center">
-											<!-- Tombol Edit -->
-											<button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-												data-bs-target="#editBab<?= $bab->id_bab ?>">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<!-- Tombol Delete -->
-											<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-												data-bs-target="#deleteBab<?= $bab->id_bab ?>">
-												<i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-
-									<!-- Modal Edit Bab -->
-									<div class="modal fade" id="editBab<?= $bab->id_bab ?>" tabindex="-1" aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered">
-											<div class="modal-content">
-												<form action="<?= site_url('admin/bab/update') ?>" method="post">
-													<div class="modal-header">
-														<h5 class="modal-title">Edit Bab</h5>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal"></button>
-													</div>
-													<div class="modal-body">
-														<input type="hidden" name="id_bab" value="<?= $bab->id_bab ?>">
-														<div class="mb-3">
-															<label class="form-label">Judul Bab</label>
-															<input type="text" name="judul_bab" value="<?= $bab->judul_bab ?>"
-																class="form-control" required>
-														</div>
-														<div class="mb-3">
-															<label class="form-label">Urutan</label>
-															<input type="text" name="urutan" value="<?= $bab->urutan ?>"
-																class="form-control" required>
-														</div>
-														<div class="mb-3">
-															<label class="form-label">Isi Bab</label>
-															<textarea name="isi" class="form-control" rows="3"
-																required><?= $bab->isi ?></textarea>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-light-secondary"
-															data-bs-dismiss="modal">Batal</button>
-														<button type="submit" class="btn btn-primary">Update</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-
-									<!-- Modal Delete Bab -->
-									<div class="modal fade" id="deleteBab<?= $bab->id_bab ?>" tabindex="-1"
-										aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered">
-											<div class="modal-content">
-												<form action="<?= site_url('admin/bab/delete') ?>" method="post">
-													<div class="modal-header">
-														<h5 class="modal-title">Hapus Bab</h5>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal"></button>
-													</div>
-													<div class="modal-body text-center">
-														<input type="hidden" name="id" value="<?= $bab->id_bab ?>">
-														<i class="bi bi-trash-fill text-danger fs-1 mb-3"></i>
-														<p>Yakin ingin menghapus <strong><?= $bab->judul_bab ?></strong>?</p>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-light-secondary"
-															data-bs-dismiss="modal">Batal</button>
-														<button type="submit" class="btn btn-danger">Hapus</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<?php endforeach; ?>
-
-		<!-- Modal Tambah Bab -->
-		<!-- Modal Tambah Bab -->
-		<div class="modal fade" id="tambahBab<?= $b->id ?>" tabindex="-1" aria-labelledby="tambahBabLabel<?= $b->id ?>"
-			aria-hidden="true">
-			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
-					<form action="<?= site_url('admin/bab/store') ?>" method="post">
+			<!-- Modal untuk buku ini -->
+			<div class="modal fade" id="addBabModal<?= $b->id ?>" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="tambahBabLabel<?= $b->id ?>">Tambah Bab untuk Buku: <?= $b->judul ?>
-							</h5>
+							<h5 class="modal-title">Kelola Bab - <?= $b->judul ?></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</div>
 						<div class="modal-body">
-							<input type="hidden" name="id_buku" value="<?= $b->id ?>">
 
-							<div class="mb-3">
-								<label for="judul_bab<?= $b->id ?>" class="form-label">Judul Bab</label>
-								<input type="text" class="form-control" id="judul_bab<?= $b->id ?>" name="judul_bab" required>
+							<!-- Tombol Tambah Bab -->
+							<button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambahBab<?= $b->id ?>">
+								<i class="bi bi-plus-circle"></i> Tambah Bab
+							</button>
+
+							<!-- Tabel Daftar Bab -->
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Judul Bab</th>
+											<th>Urutan</th>
+											<th>Isi</th>
+											<th class="text-center">Aksi</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php 
+									$babList = $this->db->get_where('bab', ['id_buku' => $b->id])->result();
+									foreach ($babList as $bab): ?>
+										<tr>
+											<td><?= $bab->judul_bab ?></td>
+											<td><?= $bab->urutan ?></td>
+											<td><?= substr($bab->isi,0,30) ?>...</td>
+											<td class="text-center">
+												<!-- Tombol Edit -->
+												<button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+													data-bs-target="#editBab<?= $bab->id_bab ?>">
+													<i class="bi bi-pencil-square"></i>
+												</button>
+												<!-- Tombol Delete -->
+												<button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+													data-bs-target="#deleteBab<?= $bab->id_bab ?>">
+													<i class="bi bi-trash"></i>
+												</button>
+											</td>
+										</tr>
+
+										<!-- Modal Edit Bab -->
+										<div class="modal fade" id="editBab<?= $bab->id_bab ?>" tabindex="-1" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<form action="<?= site_url('admin/bab/update') ?>" method="post">
+														<div class="modal-header">
+															<h5 class="modal-title">Edit Bab</h5>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal"></button>
+														</div>
+														<div class="modal-body">
+															<input type="hidden" name="id_bab" value="<?= $bab->id_bab ?>">
+															<div class="mb-3">
+																<label class="form-label">Judul Bab</label>
+																<input type="text" name="judul_bab" value="<?= $bab->judul_bab ?>"
+																	class="form-control" required>
+															</div>
+															<div class="mb-3">
+																<label class="form-label">Urutan</label>
+																<input type="text" name="urutan" value="<?= $bab->urutan ?>"
+																	class="form-control" required>
+															</div>
+															<div class="mb-3">
+																<label class="form-label">Isi Bab</label>
+																<textarea name="isi" class="form-control" rows="3"
+																	required><?= $bab->isi ?></textarea>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light-secondary"
+																data-bs-dismiss="modal">Batal</button>
+															<button type="submit" class="btn btn-primary">Update</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+
+										<!-- Modal Delete Bab -->
+										<div class="modal fade" id="deleteBab<?= $bab->id_bab ?>" tabindex="-1"
+											aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<form action="<?= site_url('admin/bab/delete') ?>" method="post">
+														<div class="modal-header">
+															<h5 class="modal-title">Hapus Bab</h5>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal"></button>
+														</div>
+														<div class="modal-body text-center">
+															<input type="hidden" name="id" value="<?= $bab->id_bab ?>">
+															<i class="bi bi-trash-fill text-danger fs-1 mb-3"></i>
+															<p>Yakin ingin menghapus <strong><?= $bab->judul_bab ?></strong>?</p>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light-secondary"
+																data-bs-dismiss="modal">Batal</button>
+															<button type="submit" class="btn btn-danger">Hapus</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
 							</div>
 
-							<div class="mb-3">
-								<label for="urutan<?= $b->id ?>" class="form-label">Urutan</label>
-								<input type="number" class="form-control" id="urutan<?= $b->id ?>" name="urutan"
-									placeholder="Contoh: 1" required>
-							</div>
-
-							<div class="mb-3">
-								<label for="isi<?= $b->id ?>" class="form-label">Isi Bab</label>
-								<textarea class="form-control" id="isi<?= $b->id ?>" name="isi" rows="4" required></textarea>
-							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Batal</button>
-							<button type="submit" class="btn btn-success">Simpan</button>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-		</div>
+			
+
+			<!-- Modal Tambah Bab -->
+			<!-- Modal Tambah Bab -->
+			<div class="modal fade" id="tambahBab<?= $b->id ?>" tabindex="-1" aria-labelledby="tambahBabLabel<?= $b->id ?>"
+				aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-dialog-centered">
+					<div class="modal-content">
+						<form action="<?= site_url('admin/bab/store') ?>" method="post" enctype="multipart/form-data">
+							<div class="modal-header">
+								<h5 class="modal-title" id="tambahBabLabel<?= $b->id ?>">Tambah Bab untuk Buku: <?= $b->judul ?>
+								</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+							<div class="modal-body">
+								<input type="hidden" name="id_buku" value="<?= $b->id ?>">
+
+								<div class="mb-3">
+									<label for="judul_bab<?= $b->id ?>" class="form-label">Judul Bab</label>
+									<input type="text" class="form-control" id="judul_bab<?= $b->id ?>" name="judul_bab" required>
+								</div>
+
+								<div class="mb-3">
+									<label for="urutan<?= $b->id ?>" class="form-label">Urutan</label>
+									<input type="number" class="form-control" id="urutan<?= $b->id ?>" name="urutan"
+										placeholder="Contoh: 1" required>
+								</div>
+
+								<div class="mb-3">
+									<label for="isi<?= $b->id ?>" class="form-label">Isi Bab</label>
+									<input type="file" class="form-control" id="isi<?= $b->id ?>" name="isi[]" accept="image/*"
+										multiple required>
+									<!-- <input type="file" class="form-control" id="isi<?= $b->id ?>" name="isi" accept="image/*" required> -->
+									<!-- <textarea class="form-control" id="isi<?= $b->id ?>" name="isi" rows="4" required></textarea> -->
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Batal</button>
+								<button type="submit" class="btn btn-success">Simpan</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		<?php endforeach; ?>
 
 
 		<!-- Modal Tambah -->
@@ -371,11 +434,61 @@
 							</div>
 							<div class="mb-3">
 								<label for="mapel" class="form-label">Mata Pelajaran</label>
-								<input type="text" class="form-control" id="mapel" name="mapel" required>
+								<select class="form-select" id="mapel" name="mapel" required>
+									<option value="">-- Pilih Mata Pelajaran --</option>
+
+									<optgroup label="Mata Pelajaran Umum">
+										<option value="agama">Pendidikan Agama dan Budi Pekerti</option>
+										<option value="ppkn">PPKn</option>
+										<option value="bindo">Bahasa Indonesia</option>
+										<option value="matumum">Matematika Umum</option>
+										<option value="ipa">IPA</option>
+										<option value="ips">IPS</option>
+										<option value="sejarahind">Sejarah Indonesia</option>
+										<option value="binggris">Bahasa Inggris</option>
+										<option value="senibudaya">Seni Budaya</option>
+										<option value="pjok">PJOK</option>
+										<option value="prakarya">Prakarya dan Kewirausahaan</option>
+										<option value="informatika">Informatika</option>
+									</optgroup>
+
+									<optgroup label="Peminatan MIPA">
+										<option value="matpem">Matematika (Peminatan)</option>
+										<option value="fisika">Fisika</option>
+										<option value="kimia">Kimia</option>
+										<option value="biologi">Biologi</option>
+									</optgroup>
+
+									<optgroup label="Peminatan IPS">
+										<option value="geografi">Geografi</option>
+										<option value="sejarah">Sejarah</option>
+										<option value="sosiologi">Sosiologi</option>
+										<option value="ekonomi">Ekonomi</option>
+									</optgroup>
+
+									<optgroup label="Peminatan Bahasa">
+										<option value="bsi">Bahasa dan Sastra Indonesia</option>
+										<option value="bse">Bahasa dan Sastra Inggris</option>
+										<option value="basing">Bahasa Asing Lain</option>
+										<option value="antropologi">Antropologi</option>
+									</optgroup>
+								</select>
 							</div>
 							<div class="mb-3">
 								<label for="kelas" class="form-label">Kelas</label>
-								<input type="text" class="form-control" id="kelas" name="kelas" required>
+								<select class="form-select" name="kelas" id="kelas" required>
+									<option value="">Pilih Kelas</option>
+									<optgroup label="Kelas Biasa">
+										<option value="X">X</option>
+										<option value="XI">XI</option>
+										<option value="XII">XII</option>
+									</optgroup>
+
+									<optgroup label="Kelas Khusus">
+										<option value="X">TKA</option>
+										<option value="XI">UTBK</option>
+									</optgroup>
+								</select>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Cover Buku</label>

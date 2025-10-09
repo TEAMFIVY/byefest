@@ -132,7 +132,7 @@
 
 
 
-    <section class="book-section">
+    <!-- <section class="book-section">
       <h2 class="section-title">Matematika</h2>
       <div class="book-grid">
         <div class="book-card">
@@ -333,7 +333,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <script>
       function toggleDropdown() {
         const dropdown = document.getElementById("profileDropdown");

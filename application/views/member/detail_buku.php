@@ -33,21 +33,37 @@
 
 
   <section class="book-section">
-  <h2 class="section-title">Daftar Bab</h2>
+  <h2 class="section-title">Isi Buku</h2>
 
   <div class="babs-container">
   <div class="babs-card">
     <?php if(!empty($babs)): ?>
       <?php foreach($babs as $bab): ?>
-        <div class="bab-card">
-          <h3><?= $bab->judul_bab ?></h3>
-          <p><?= nl2br($bab->isi) ?></p>
+        <div class="bab-card" style="margin-bottom:30px; background:#f8faff; padding:20px; border-radius:12px;">
+          <h3 style="margin-bottom:20px;"><?= $bab->judul_bab ?></h3>
+
+          <?php 
+          $fotos = json_decode($bab->isi, true);
+          if (is_array($fotos) && !empty($fotos)): ?>
+              <div class="bab-foto" style="display:flex; flex-direction:column; gap:20px;">
+                  <?php foreach($fotos as $foto): ?>
+                      <div style="text-align:center;">
+                          <img src="<?= base_url('assets/materi/' . $foto) ?>" 
+                               alt="Foto Bab" 
+                               style="max-width:75%; height:auto; border-radius:10px; border:1px solid #ddd; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                      </div>
+                  <?php endforeach; ?>
+              </div>
+          <?php else: ?>
+              <p><?= nl2br($bab->isi) ?></p>
+          <?php endif; ?>
         </div>
       <?php endforeach; ?>
     <?php else: ?>
-      <p>Belum ada bab untuk buku ini.</p>
+      <p>Belum ada isi untuk buku ini.</p>
     <?php endif; ?>
-  </div>
+</div>
+
 </div>
 
 

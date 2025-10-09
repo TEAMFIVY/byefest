@@ -383,10 +383,14 @@ a {
   flex: 0 0 220px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   animation: fadeInUp 1s ease;
   position: relative;
+  height: 100%;
 }
+
+
 
 .book-card:hover {
   transform: translateY(-10px) scale(1.03);
@@ -400,9 +404,9 @@ a {
 }
 
 .book-content h3 {
-  font-size: 1.2em;
-  color: #2c3e50;
-  margin-bottom: 10px;
+  font-size: 1.2em !important;
+  color: #2c3e50 !important;
+  margin-bottom: 10px !important;
 }
 
 .book-content p {
@@ -412,18 +416,20 @@ a {
   margin-bottom: 16px;
 }
 
+
 .book-content button {
-  background-color: #007BFF;
-  border: none;
-  padding: 8px 14px;
-  color: white;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
+  background-color: #3b5a91 !important;
+  border: none !important;
+  padding: 8px 18px !important;
+  color: white !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
 }
 
 .book-content button:hover {
-  background-color: #0056b3;
+  background-color: #284777 !important;
 }
 
 footer {

@@ -109,18 +109,47 @@ class Bab extends CI_Controller {
 
     public function store()
     {
+        $config['upload_path']   = './assets/materi/';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['max_size']      = 2048; // 2 MB
+        $config['encrypt_name']  = TRUE; // supaya nama file unik
+
+        $this->load->library('upload', $config);
+
+        $files = $_FILES;
+        $foto_nama = [];
+
+        $count = count($_FILES['isi']['name']);
+        for ($i = 0; $i < $count; $i++) {
+            if (!empty($files['isi']['name'][$i])) {
+                $_FILES['file']['name']     = $files['isi']['name'][$i];
+                $_FILES['file']['type']     = $files['isi']['type'][$i];
+                $_FILES['file']['tmp_name'] = $files['isi']['tmp_name'][$i];
+                $_FILES['file']['error']    = $files['isi']['error'][$i];
+                $_FILES['file']['size']     = $files['isi']['size'][$i];
+
+                if ($this->upload->do_upload('file')) {
+                    $data = $this->upload->data();
+                    $foto_nama[] = $data['file_name'];
+                }
+            }
+        }
+
+        // Simpan nama file sebagai JSON
         $data = [
             'id_buku'   => $this->input->post('id_buku'),
             'judul_bab' => $this->input->post('judul_bab'),
             'urutan'    => $this->input->post('urutan'),
-            'isi'       => $this->input->post('isi'),
+            'isi'       => json_encode($foto_nama), // simpan sebagai JSON
         ];
 
         $this->bab->insert($data);
 
-        $this->session->set_flashdata('success', 'Bab berhasil ditambahkan.');
-        return redirect('admin/buku'); // arahkan balik ke daftar buku
+        $this->session->set_flashdata('success', 'Bab dan foto berhasil ditambahkan.');
+        return redirect('admin/buku');
     }
+
+
 
     // ✅ update bab
     public function update()
@@ -140,9 +169,12 @@ class Bab extends CI_Controller {
     }
 
     // ✅ hapus bab
-    public function delete($id_bab)
+    public function delete()
     {
+        $id_bab = $this->input->post('id');
         $this->bab->delete($id_bab);
         echo json_encode(['status' => 'success']);
+        redirect('admin/buku');
     }
+
 }
