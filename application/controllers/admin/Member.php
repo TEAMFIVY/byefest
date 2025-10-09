@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Member extends CI_Controller {
 
+	public function __construct(){
+		if (!$this->session->userdata('user_id')) {
+            $this->session->set_flashdata('error', 'Anda harus login terlebih dahulu.');
+            redirect('auth');
+        }
+	}
+
 	public function index()
 	{
 		$data['title'] 	= "Daftar Member | ByeFest";

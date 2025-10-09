@@ -12,8 +12,8 @@
       <div class="logo">FIVY</div>
       <nav class="menu">
         <ul>
-          <li><a href="<?= base_url('member') ?>">Home</a></li>
-          <li><a href="<?= base_url('buku') ?>">Daftar Bacaan</a></li>
+          <li><a href="<?= base_url('member/home') ?>">Home</a></li>
+          <li><a href="<?= base_url('member/buku') ?>">Daftar Bacaan</a></li>
         </ul>
       </nav>
     </div>
